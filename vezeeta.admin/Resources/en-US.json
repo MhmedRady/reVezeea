@@ -1,0 +1,210 @@
+{
+  "hello": "Hello",
+  "username": "UserName",
+  "logomega": "Mega",
+  "dashboard": "Dashboard",
+  "placeholdeusername": "Your UserName",
+  "placeholdeemail": "Your Email Address",
+  "correction": "is not correct!",
+  "Or": "or",
+  "not found": "this data not found",
+  "show on map": "Show On Map",
+  "night": "Night",
+  "rating": "Rating",
+  "user not valid": "This user is not valid!",
+  "minimumLength 2": "MinimumLength can not be less than 2 letters",
+
+  "placeholdpass": "Password",
+  "email": "Email Address",
+
+  "password": "Password",
+  "confirm_password": "Confirm Passwrd",
+  "enter": "Enter",
+  "send": "Send",
+  "errorusername": "",
+  "errorpass": "",
+  "erroremail": "Email Not Valid",
+  "nullError": " Field Can't Be Empty",
+
+  "errorphone": "",
+  "ar-EG": "Arabic",
+  "en-US": "English",
+  "not selected": "is not selected",
+  //side bar
+  "category": "Category",
+  "categories": "Categories",
+  "dispaly": "Display",
+  "add": "Add",
+  //Display Category
+  "add_new": "Add New",
+  "name": "Name",
+  "parent_category": "Parent",
+  "count_child": "Count Child",
+  "activate": "Active",
+  "actions": "Actions",
+  "edit": "Edit",
+  "isActive": "active",
+  "inActive": "inActive",
+  "delete": "delete",
+  "upload": "Upload Files",
+  //display ibooking
+  "iBooking": "IBooking",
+  "brand": "Brand",
+  "properties": "properties",
+  "property": "property",
+  "dropHere": "Drop Files Here To Upload",
+  "description": "Description",
+  "img": "Image",
+  "imgs": "Images",
+  "img not empty": "Images can not be empty!",
+
+  "attribute": "Attribute",
+  "attributes": "Attributes",
+
+  "add success": "has been added successfully!",
+  "updateSuccess": " Data has been Updated Successfully!",
+  "deleted successfully": "Data has been deleted successfully!",
+  "can't delete": "Cannot delete this data!",
+  "can't remove because": "Sorry can't remove this category because it has ",
+  "child categories": " Child Categories",
+  "brands": " brands",
+  "category not allowed": "Category is not allowed!",
+  "Check In History": "Check In History",
+
+
+  //create category
+  "Select Parent Category": "Select Parent Category",
+  "submit": "Submit",
+  "category exist": "this category already exist!",
+  "category name empty": "Category name can't be empty",
+  // create and edit IAttribute
+  "new IAttribute": "New IAttribute",
+  "inserted before": "this attribute has been inserted before !",
+  "attribute not exist": "this attribute does not exist!",
+  "Attribute Name": "Attribute Name can't be empty",
+  //create IBooking
+  "step": "Step",
+  "Select Brand": "Select Brand",
+  "Governorate": "Governorate",
+  "Select Governorate": "Select Governorate",
+  "address": "Address",
+  "city": "City",
+  "new ibooking": "New Ibooking",
+  "edit ibooking": "Edit Ibooking",
+  "booking exist": "this booking already exist!",
+  "ibooking not allow": "Ibooking is not allowed!",
+  "can't remove ibooking": "Sorry can't remove this Ibooking ",
+
+  //Auth_User
+  //Register
+  "login": "login",
+  "register": "register",
+  "forget_password": "Forget Password",
+  "forget_password?": "Forget Password ?",
+  "add_new_user": "New User",
+  //code verficatio
+  "code_verfication": "Enter Code",
+  "reset_pass": "Reset Password",
+  "remember me": "remember me",
+  "Login with Modern": "Login with Modern",
+
+  //layout
+  "stays": "Stays",
+  "hotels": "Hotels",
+  "villas": "Villas",
+  "apartments": "Apartments",
+  "showMore": "Show More",
+
+  "whereGoing": "Where are you going?",
+  "check_in_out": "checkin - checkout",
+  "check in": "Check In",
+  "check out": "Check Out",
+  "ibooking count": "Ibooking-Count",
+  "customers": "Customers",
+  "customer name": "Customer Name",
+  "some other": "some other",
+  "cash flow": "Cash Flow",
+  "recently checkin": "Recently Check-In",
+  "total": "Total",
+  "residence": "residence duration",
+  "recent ibooking": "Recent Ibooking",
+  "review": "Review",
+  "room": "room",
+  "rooms": "rooms",
+  "person": "person",
+  "persons": "persons",
+  "search": "Search",
+  "may you love": "Bookings may you love!",
+
+  //topfooter
+  "hfootertitle": "Save time, save money!",
+  "pfootertitle": "Sign up and we'll send the best deals to you",
+  "emailfootertitle": "Your Email",
+  "fsubsribe": "Subscribe",
+
+  //bottomfooter
+  "propbtn": "List Your Property",
+  "fcontact": "Contact Us",
+  "fhelp": "Help",
+  "fabout": "About",
+
+  //topvisit
+  "cairo": "Cairo",
+  "luxor": "Luxor",
+  "alexandria": "Alexandria",
+  "sharmelsheikh": "Sharm El Sheikh",
+  "aswan": "Aswan",
+
+  //next trip
+  "nexttrip": "Get inspiration for your next trip",
+  "triptitle1": "The 9 most beautiful cities for fall travel",
+  "triptitle2": "The 9 most beautiful cities for fall travel",
+  "triptitle3": "The 9 most beautiful cities for fall travel",
+  "triptitle4": "The 9 most beautiful cities for fall travel",
+  "triptitle5": "The 9 most beautiful cities for fall travel",
+  "trippar1": "From soaking in Seoul’s hot springs to digging into sticky cinnamon rolls in Montreal.",
+  "trippar2": "From soaking in Seoul’s hot springs to digging into sticky cinnamon rolls in Montreal.",
+  "trippar3": "From soaking in Seoul’s hot springs to digging into sticky cinnamon rolls in Montreal.",
+  "trippar4": "From soaking in Seoul’s hot springs to digging into sticky cinnamon rolls in Montreal.",
+  "trippar5": "From soaking in Seoul’s hot springs to digging into sticky cinnamon rolls in Montreal.",
+
+  //connecttravels
+  "connecttravel": "Connect with other travelers",
+  "egypt": "Egypt",
+  "trvlcom": "Travel Community",
+  "trvltalk": "Travel Talk",
+  "gendis": "Genaral Discussion",
+  "morecom": "More Communities",
+  "viewall": "View All",
+
+  //nav bar
+  "Find your next stay": "Find your next stay",
+  "paragraph": "Search deals on hotels, homes, and much more...",
+
+  // checked
+  "checked_in": "Checked",
+  "booking_name": "Booking Name",
+  "price": "Price",
+  "checked_in_date": "Checked In Date",
+  "checked_out_date": "Checked Out Date",
+  "stay": "Stay of duration",
+  "total": "Total",
+  //Edit Profile
+  "personal_info": " Personal Info",
+  "phone": "Phone",
+  "contact_number": "Contact Number",
+  "save": "Save",
+  "cancel": "Cancel",
+  "error_phone": "Minimum Length can't be less than 11 characters",
+  //Edit Profile password
+  "edit_profile": "Edit Profile",
+  "pass_null": "Please Enter New Password",
+  "pass_not_match": "Password does not match with confirm password",
+  "pass_less_length": "Minimum Length can't be less than 8 characters",
+  "user_null": "User is not found",
+  "update_success": " Updated Successfully",
+  "occur_error": "Occured error ",
+
+  //user_data_booking
+  "data_book": "Data Of Bookings"
+}

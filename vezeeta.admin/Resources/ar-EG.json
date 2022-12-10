@@ -1,0 +1,212 @@
+{
+
+  "hello": "مرحبا ",
+  "username": "اسم المستخدم",
+  "logomega": "ميجا",
+  "dashboard": "الصفحة الرئيسية",
+  "placeholdeusername": "اسم المستخدم",
+  "placeholdeemail": "بريدك الألكتروني",
+  "placeholdpass": "الرقم السري",
+  "email": "البريد الألكتروني",
+  "correction": "غير صحيح!",
+  "show on map": "أظهر علي الخريطة",
+  "night": "الليلة",
+  "Or": "أو",
+  "rating": "تقييم",
+  "not found": "هذه البيانات غير موجودة",
+  "user not valid": "هذا المستخدم غير صالح",
+  "password": "كلمة المرور",
+  "confirm_password": "تاكيد كلمة المرور",
+  "enter": "ادخل",
+  "send": "ارسال",
+  "errorusername": "",
+  "errorpass": "",
+  "minimumLength 2": "لا يمكن ان يقل عدد الحروف عن حرفين",
+  "erroremail": "البريد الالكتروني غير صالح",
+  "nullError": " لا يمكن ان يترك فارغاً ",
+  "errorphone": "",
+  "ar-EG": "العربية",
+  "en-US": "الانجليزية",
+  "not selected": "لم يتم اختيار",
+  "Check In History": "سجلات الوصول",
+  //side bar
+  "category": "قسم",
+  "categories": "الاقسام",
+  "dispaly": "عرض",
+  "add": "اضافة",
+  //Display Category
+  "add_new": "اضافة قسم",
+  "name": "الاسم",
+  "parent_category": "القسم الرئيسي",
+  "count_child": "عدد الاقسام الفرعية",
+  "activate": "الحالة",
+  "actions": "التحكم",
+  "edit": "تعديل",
+  "isActive": "مفعل",
+  "inActive": "غير مفعل",
+  "delete": "حذف",
+  "upload": "رفع الملفات",
+  //display ibooking
+  "iBooking": "اماكن الحجز",
+  "recently checkin": "الاقامات الحالية",
+  "total": "الإجمالي",
+  "residence": "مدة الإقامة",
+  "review": "عرض تفاصيل",
+  "recent ibooking": "الحجوزات الحالية",
+  "brand": "العلامة التجارية",
+  "description": "الوصف",
+  "dropHere": "قم بسحب وإسقاط الملفات هنا للتحميل",
+  "img": "صورة",
+  "imgs": "الصور",
+  "img not empty": "لا يمكن ان تكون الصور خالية",
+
+  "login": "تسجيل دخول",
+
+  //create category
+  "new category": "فئة جديدة",
+  "Select Parent Category": "اختر الفئة",
+  "submit": "حفظ",
+  "category exist": "هذه الخاصية موجودة مسبقا!",
+  "category name empty": "عفوا لا يمكن ان يترك اسم القسم فارغ",
+  // create and edit Iattrbuite 
+  "new IAttribute": "خاصية جديدة",
+  "inserted before": "تم اضافة هذه الخاصية من قبل",
+  "attribute not exist": "هذه الخاصية ليست موجودة!",
+  "Attribute Name": "لا يمكن ان يكون اسم الخاصية فارغ",
+
+  //create IBooking
+  "step": "الخطوة",
+  "Select Brand": "اختر العلامة التجارية",
+  "Governorate": "المحافظة",
+  "Select Governorate": "اختر المحافظة",
+  "address": "العنوان",
+  "city": "المدينة",
+  "new ibooking": "حجز جديد",
+  "edit ibooking": "تعديل حجز",
+  "booking exist": "هذا الحجز موجود مسبقا!",
+  "ibooking not allow": "هذا الحجز غير مسموح به",
+  "can't remove ibooking": "عفوا لا يمكن مسح هذا الحجز",
+  //Auth_User
+  //Register
+  "sign_up": "تسجيل",
+  "sign_in": "تسجيل الدخول",
+  "register": "تسجيل",
+  "remember me": "تذكرني",
+  "Login with Modern": "تسجيل الدخول ",
+
+  "forget_password?": "نسيت كلمة المرور؟",
+  "forget_password": "نسيت كلمة المرور",
+  //code verficatio
+  "code_verfication": "ادخل الكود",
+  "reset_pass": "اعادة ضبط الرقم السري",
+  "add_new_user": "اضافة مستخدم جديد",
+
+
+  "attribute": "خاصية",
+  "attributes": "خصائص ",
+  "add success": "تمت اضافتها بنجاح!",
+  "updateSuccess": " تم تعديل البيانات بنجاح! ",
+  "deleted successfully": "تم مسح البيانات بنجاح!",
+  "can't delete": "لا يمكن مسح هذه البيانات!",
+  "can't remove because": "اسف لا يمكن مسح هذا القسم بسبب أن لديه ",
+  "child categories": " أقسام فرعية  ",
+  "brands": " علامات تجارية ",
+  "category not allowed": "هذا القسم غير مسموح به",
+
+
+  //layout
+  "stays": "اماكن اقامة",
+  "hotels": "فنادق",
+  "villas": "فيلات",
+  "apartments": "شقق",
+  "properties": "عقارات",
+  "property": "عقار",
+  "whereGoing": "ما هي وجهتك؟",
+  "check_in_out": "تسجيل الوصول - تسجيل المغادرة",
+  "check in": "وصول الي الفندق",
+  "check out": "خروج من الفندق",
+  "ibooking count": "عدد الحجوزات",
+  "customers": "النزلاء",
+  "customer name": "اسم النزيل",
+  "cash flow": "المال المتدفق",
+  "room": "غرفة",
+  "rooms": "غرف",
+  "person": "شخص",
+  "persons": "اشخاص",
+  "search": "بحث",
+  "showMore": "عرض المزيد",
+  "some other": "بعض ",
+  "may you love": "التي من الممكن ان تعجبك",
+
+  //topfooter
+  "hfootertitle": "وفر وقتك ومالك!",
+  "pfootertitle": "اشترك وسنرسل أفضل العروض إليك",
+  "emailfootertitle": "بريدك الالكتروني",
+  "fsubsribe": "أشترك",
+
+  //bottomfooter
+  "propbtn": "اعرض عقارك علي موقعنا",
+  "fcontact": "تواصل معنا",
+  "fhelp": "المساعدة",
+  "fabout": "من نحن",
+
+  //topvisit
+  "cairo": "القاهرة",
+  "luxor": "الاقصر",
+  "alexandria": "الاسكندرية",
+  "sharmelsheikh": "شرم الشيخ",
+  "aswan": "أسوان",
+
+  //next trip
+  "nexttrip": "احصل على الإلهام لرحلتك القادمة",
+  "triptitle1": "أجمل 9 مدن للسفر في الخريف",
+  "triptitle2": "أجمل 9 مدن للسفر في الخريف",
+  "triptitle3": "أجمل 9 مدن للسفر في الخريف",
+  "triptitle4": "أجمل 9 مدن للسفر في الخريف",
+  "triptitle5": "أجمل 9 مدن للسفر في الخريف",
+  "trippar1": "من النقع في الينابيع الساخنة في سيول إلى حفر لفائف القرفة اللزجة في مونتريال.",
+  "trippar2": "من النقع في الينابيع الساخنة في سيول إلى حفر لفائف القرفة اللزجة في مونتريال.",
+  "trippar3": "من النقع في الينابيع الساخنة في سيول إلى حفر لفائف القرفة اللزجة في مونتريال.",
+  "trippar4": "من النقع في الينابيع الساخنة في سيول إلى حفر لفائف القرفة اللزجة في مونتريال.",
+  "trippar5": "من النقع في الينابيع الساخنة في سيول إلى حفر لفائف القرفة اللزجة في مونتريال.",
+
+  //connecttravels
+  "connecttravel": "تواصل مع المسافرون الاخرون",
+  "egypt": "مصر",
+  "trvlcom": "مجتمع السفر",
+  "trvltalk": "نقاش السفر",
+  "gendis": "مناقشة عامة",
+  "morecom": "المزيد من المجتمعات",
+  "viewall": "عرض الكل",
+
+  //home page
+  "Find your next stay": "إبحث عن اقامتك القادمة",
+  "paragraph": "ابحث عن العروض علي الفنادق والمنازل والمزيد والمزيد ...",
+
+  // checked
+  "checked_in": "تسجيل الوصول",
+  "booking_name": "اسم الحجز",
+  "price": "السعر",
+  "checked_in_date": "ميعاد بداية الحجز",
+  "checked_out_date": "ميعاد انتهاء الحجز",
+  "stay": "مدة الاقامة",
+  //Edit Profile
+  "personal_info": "بيانات الشخصية",
+  "phone": "رقم الموبيل",
+  "contact_number": "رقم لتواصل",
+  "save": "حفظ",
+  "cancel": "الغاء",
+  "error_phone": "رقم الموبيل لا يقل عن 11 ارقام",
+  //Edit Profile password
+  "edit_profile": "تعديل الملف",
+  "pass_null": "من فضلك ادخل كلمة مرور",
+  "pass_not_match": " تاكيد رقم المرور لا يتطابق مع رقم المرور",
+  "pass_less_length": "رقم المرور لا يقل عن 8 حروف وارقام",
+  "user_null": "المستخدم غير موجود",
+  "update_success": " تم تحديث العملية بنجاح",
+  "occur_error": "حدث خطا اثناء عملية تحديث",
+
+
+  //user_data_booking
+  "data_book": "بيانات الحجز"
+}

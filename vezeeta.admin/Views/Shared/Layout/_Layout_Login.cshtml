@@ -1,0 +1,37 @@
+﻿
+@{
+    var isRTL = CultureInfo.CurrentCulture.Name.StartsWith("ar") ? "rtl" : "ltr";
+}
+<!DOCTYPE html>
+<html class="loading" lang="en" dir="@isRTL">
+<head>
+    <partial name="../Panel/_Head.cshtml" />
+    @RenderSection("Head", required: false)
+    @*START PANEL STAYLE LINKS*@
+    <partial name="../Panel/_Style.cshtml" />
+    <!-- BEGIN Custom CSS-->
+    @RenderSection("Styles", required: false)
+    <!-- END Custom CSS-->
+    <link rel="stylesheet" type="text/css" href="~/Admin/assets/css/StyleSheet.css" />
+</head>
+<body class="vertical-layout vertical-menu-modern 1-column   menu-expanded blank-page blank-page"
+      data-open="click" data-menu="vertical-menu-modern" data-col="1-column">
+    
+    <div class="app-content content">
+        <div class="content-wrapper">
+            <div class="content-header row">
+            </div>
+            <div class="content-body">
+                @*START PAGE CONTENT*@
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+
+    <partial name="../Panel/_Script.cshtml" />
+    
+    <!-- BEGIN PAGE LEVEL JS-->
+    @RenderSection("Scripts", required: false)
+    <!-- END PAGE LEVEL JS-->
+</body>
+</html>
