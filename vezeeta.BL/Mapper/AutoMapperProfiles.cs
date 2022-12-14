@@ -1,12 +1,14 @@
 ﻿using AutoMapper;
 using vezeeta.BL.DTOs.Admin;
+using vezeeta.BL.GenericDTOs;
 using vezeeta.DBL.db.Models;
 namespace vezeeta.BL.Mapper;
 
 public class AutoMapperProfile : Profile
 {
-    protected AutoMapperProfile()
+    public AutoMapperProfile()
     {
         CreateMap<User, AdminDTO>();
+        CreateMap<Department, DepartmentDTO>();
     }
 }

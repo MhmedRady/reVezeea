@@ -7,7 +7,7 @@ using vezeeta.DBL.db.Models;
 
 namespace vezeeta.DBL.Repos.UserRepo
 {
-    public interface IDepartmentRepo : IGenericRepo<User>
+    public interface IDepartmentRepo : IGenericRepo<Department>
     {
 
 

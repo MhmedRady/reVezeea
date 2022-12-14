@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace vezeeta.DBL.Repos;
 
-public interface IGenericRepo<T>
+public interface IGenericRepo<T> where T : class
 {
-    public List<T> Index();
+    List<T> Index();
     public T? Show(Guid id);
     public void Add(T entity);
     public void Update(T entity);
     public void Delete(T entity);
     public void SaveChanges();
-
+    public void LoadData();
 }

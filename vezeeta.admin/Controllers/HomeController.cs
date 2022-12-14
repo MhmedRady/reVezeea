@@ -34,7 +34,6 @@ namespace vezeeta.admin.Controllers
         #endregion
         public IActionResult Index()
         {
-            TempData["success_msg"] = "error";
             return View();
         }
 
