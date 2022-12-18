@@ -32,4 +32,11 @@ public class User : IGenericActiveModel
     public bool is_active { get; set; }
     public DateTime? created_at { get; set; }
     public DateTime? updated_at { get; set; }
+
+    public ICollection<Center> Centers { get; set; }
+
+    public User()
+    {
+        Centers = new HashSet<Center>();
+    }
 }

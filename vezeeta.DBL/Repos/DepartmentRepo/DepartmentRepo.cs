@@ -8,7 +8,7 @@ using vezeeta.DBL;
 
 namespace vezeeta.DBL;
 
-public class DepartmentRepo : GenericRepo<User>, IDepartmentRepo
+public class DepartmentRepo : GenericRepo<Department>, IDepartmentRepo
 {
     private VezeetaDB vezeetaDB;
     public DepartmentRepo(VezeetaDB _vezeetaDB) : base(_vezeetaDB)

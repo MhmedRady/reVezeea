@@ -1,12 +1,26 @@
+using AutoMapper;
 using Luxury_Back;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc.Razor;
+
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
 using System.Globalization;
 using System.Text.Json.Serialization;
 using vezeeta.BL;
 using vezeeta.DBL;
+
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Migrations;
+using Microsoft.Extensions.Localization;
+using System.Globalization;
+using System.Text.Json.Serialization;
+using vezeeta.BL.Managers;
+using vezeeta.BL.Managers.DepartmentManager;
+using vezeeta.BL.Mapper;
+using vezeeta.DBL.db.context;
+using vezeeta.DBL.Repos.UserRepo;
+
 
 namespace vezeeta.admin
 {
@@ -74,11 +88,37 @@ namespace vezeeta.admin
             });
             #endregion
 
+            builder.Services.AddDbContext<VezeetaDB>(db =>
+            {
+                db.UseSqlServer(builder.Configuration.GetConnectionString("vezeetaDb"));
+            });
+
             builder.Services.AddControllers()
                .AddJsonOptions(o => o.JsonSerializerOptions
                    .ReferenceHandler = ReferenceHandler.IgnoreCycles);
+            #region Repos
+            builder.Services.AddScoped<IDepartmentRepo, DepartmentRepo>();
+            #endregion
+
+            #region Manager
+            builder.Services.AddScoped<IDepartmentManager, DepartmentManager>();
+            #endregion
+
+            #region Mappers
+            builder.Services.AddAutoMapper(typeof(AutoMapperProfile).Assembly);
+            #endregion
 
             var app = builder.Build();
+
+            #region Language
+            var supportedCultures = new[] { "en-US", "ar-EG" };
+            var LocalizationOptions = new RequestLocalizationOptions()
+                .SetDefaultCulture(supportedCultures[0])
+                .AddSupportedCultures(supportedCultures)
+                .AddSupportedUICultures(supportedCultures);
+
+            app.UseRequestLocalization(LocalizationOptions);
+            #endregion
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
@@ -105,3 +145,22 @@ namespace vezeeta.admin
         }
     }
 }
+
+/*
+ * migrationBuilder.InsertData(
+                table: "departments",
+                columns: new[]
+                {
+                    "name_ar",
+                    "name_en",
+                    "is_active",
+                },
+                values: new object[,]
+                {
+                    {"??????", "hospital", true },
+                    {"????? ????", "Private clinic", true },
+                    {"?????? ??????", "Outpatient clinics", true },
+                }
+                
+                );
+*/

@@ -6,10 +6,12 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-namespace vezeeta.DBL;
 
+namespace vezeeta.DBL.db.GenericModels;
 
-public class Department
+[Index(nameof(name_ar), IsUnique = true)]
+[Index(nameof(name_en), IsUnique = true)]
+public class GenericNamedModel 
 {
     [Key]
     public Guid Id { get; set; }
@@ -23,10 +25,4 @@ public class Department
     [DefaultValue("getdate()")]
     public DateTime? created_at { get; set; }
     public DateTime? updated_at { get; set; }
-
-    public ICollection<Center> Centers { get; set; }
-
-    public Department() { 
-        Centers = new HashSet<Center>();
-    }
 }

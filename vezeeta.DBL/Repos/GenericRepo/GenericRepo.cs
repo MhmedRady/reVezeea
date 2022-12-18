@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,7 +9,7 @@ using vezeeta.DBL;
 
 namespace vezeeta.DBL;
 
-public class GenericRepo<T> : IGenericRepo<T>
+public class GenericRepo<T> : IGenericRepo<T> where T : class
 {
     private readonly VezeetaDB vezeetaDB;
 
@@ -18,32 +20,39 @@ public class GenericRepo<T> : IGenericRepo<T>
 
     public void Add(T entity)
     {
-        throw new NotImplementedException();
+        vezeetaDB.Set<T>().Add(entity);
     }
 
     public void Delete(T entity)
     {
-        throw new NotImplementedException();
+        vezeetaDB.Set<T>().Remove(entity);
     }
 
     public List<T> Index()
     {
-        throw new NotImplementedException();
+        return this.vezeetaDB.Set<T>().ToList();
     }
 
     public T? Show(Guid id)
     {
-        throw new NotImplementedException();
+        return this.vezeetaDB.Set<T>().Find(id);
     }
 
     public void Update(T entity)
     {
-        throw new NotImplementedException();
+
     }
 
     void IGenericRepo<T>.SaveChanges()
     {
+
         this.vezeetaDB.SaveChanges();
+
+    }
+
+    public void LoadData()
+    {
+
     }
 
 }

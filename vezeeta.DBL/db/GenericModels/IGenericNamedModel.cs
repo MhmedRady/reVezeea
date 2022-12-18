@@ -10,8 +10,7 @@ namespace vezeeta.DBL;
 
 public interface IGenericNamedModel : IGenericActiveModel
 {
-    [Required] 
+
     public string? name_ar { get; set; }
-    [Required]
     public string? name_en { get; set; }
 }
