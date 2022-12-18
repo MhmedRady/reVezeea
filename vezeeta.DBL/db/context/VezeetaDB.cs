@@ -5,9 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using vezeeta.DBL.db.Models;
 
-namespace vezeeta.DBL.db.context;
+namespace vezeeta.DBL;
 public class VezeetaDB : DbContext
 {
     public virtual DbSet<User> users { get; set; } = null!;

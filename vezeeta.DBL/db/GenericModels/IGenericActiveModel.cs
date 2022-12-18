@@ -3,7 +3,7 @@ using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace vezeeta.DBL.db.GenericModels
+namespace vezeeta.DBL
 {
     public interface IGenericActiveModel : IGenericModel
     {

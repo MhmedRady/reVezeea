@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using vezeeta.DBL.db.context;
-using vezeeta.DBL.Repos;
+using vezeeta.DBL;
 
-namespace vezeeta.DBL.Repos;
+namespace vezeeta.DBL;
 
 public class GenericRepo<T> : IGenericRepo<T>
 {

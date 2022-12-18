@@ -4,10 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using vezeeta.DBL.db.context;
-using vezeeta.DBL.db.Models;
+using vezeeta.DBL;
 
-namespace vezeeta.DBL.Repos.UserRepo;
+namespace vezeeta.DBL;
 
 public class UserRepo : GenericRepo<User>, IUserRepo
 {

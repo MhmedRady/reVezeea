@@ -1,12 +1,15 @@
 ﻿using AutoMapper;
-using vezeeta.BL.DTOs.Admin;
-using vezeeta.DBL.db.Models;
-namespace vezeeta.BL.Mapper;
+using vezeeta.BL;
+using vezeeta.DBL;
+
+
+namespace vezeeta.BL;
 
 public class AutoMapperProfile : Profile
 {
-    protected AutoMapperProfile()
+    public AutoMapperProfile()
     {
         CreateMap<User, AdminDTO>();
+        //CreateMap<AdminDTO, User>();
     }
 }

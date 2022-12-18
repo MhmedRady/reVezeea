@@ -6,9 +6,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using vezeeta.DBL.db.GenericModels;
-
-namespace vezeeta.DBL.db.Models;
+namespace vezeeta.DBL;
 
 [Index(nameof(name_ar), IsUnique = true)]
 [Index(nameof(name_en), IsUnique = true)]

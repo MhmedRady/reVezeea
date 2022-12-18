@@ -1,9 +1,12 @@
 using Luxury_Back;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc.Razor;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
 using System.Globalization;
 using System.Text.Json.Serialization;
+using vezeeta.BL;
+using vezeeta.DBL;
 
 namespace vezeeta.admin
 {
@@ -13,8 +16,38 @@ namespace vezeeta.admin
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+            #region services
+            builder.Services.AddScoped<IAdminManager, AdminManager>();
+            builder.Services.AddScoped<IDepartmentRepo, DepartmentRepo>();
+            #endregion
+
+            #region Database
+
+            builder.Services.AddDbContext<VezeetaDB>(
+                a =>
+                {
+                    a.UseSqlServer(builder.Configuration.GetConnectionString("DB"));
+                });
+
+            #endregion
+
+            #region auth
+
+            builder.Services.AddAuthentication("cookieAuth")
+                .AddCookie("cookieAuth", a =>
+                {
+                    a.LoginPath = "/AdminAuth/login";
+                    a.LogoutPath = "/AdminAuth/logout";
+                });
+            #endregion
+
+            #region mapper
+            builder.Services.AddAutoMapper(typeof(AutoMapperProfile).Assembly);
+            #endregion
 
             #region language
             builder.Services.AddLocalization();
@@ -59,6 +92,8 @@ namespace vezeeta.admin
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 

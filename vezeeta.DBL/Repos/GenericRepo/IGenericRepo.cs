@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace vezeeta.DBL.Repos;
+namespace vezeeta.DBL;
 
 public interface IGenericRepo<T>
 {

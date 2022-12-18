@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace vezeeta.BL.DTOs.Admin
+namespace vezeeta.BL
 {
     public class AdminDTO
     {

@@ -1,9 +1,8 @@
 ﻿using AutoMapper;
 using System;
-using vezeeta.BL.DTOs.Admin;
-using vezeeta.DBL.Repos.UserRepo;
+using vezeeta.DBL;
 
-namespace vezeeta.BL.Managers;
+namespace vezeeta.BL;
 
 public class AdminManager : IAdminManager
 {
@@ -45,5 +44,14 @@ public class AdminManager : IAdminManager
     public void Update(AdminDTO admin)
     {
         throw new NotImplementedException();
+    }
+
+    public AdminDTO? GetByUserName(string userName)
+    {
+        var admin = _adminRepo.GetByUserName(userName);
+        if (admin == null)
+            return null;
+        var Admin = _mapper.Map<AdminDTO>(admin);
+        return Admin;
     }
 }

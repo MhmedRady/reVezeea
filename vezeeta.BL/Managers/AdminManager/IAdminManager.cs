@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using vezeeta.BL.DTOs.Admin;
 
-namespace vezeeta.BL.Managers;
+namespace vezeeta.BL;
 
 public interface IAdminManager
 {
@@ -15,4 +14,5 @@ public interface IAdminManager
     public void Update(AdminDTO admin);
     public AdminDTO Delete(Guid id);
     public bool IsAdmin(AdminDTO admin);
+    public AdminDTO? GetByUserName(string userName);
 }

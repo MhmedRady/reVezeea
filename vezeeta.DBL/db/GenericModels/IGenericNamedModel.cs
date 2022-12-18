@@ -5,7 +5,7 @@ using System.Xml.Linq;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace vezeeta.DBL.db.GenericModels;
+namespace vezeeta.DBL;
 
 
 public interface IGenericNamedModel : IGenericActiveModel

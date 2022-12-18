@@ -6,9 +6,9 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using vezeeta.DBL.db.GenericModels;
+using vezeeta.DBL;
 
-namespace vezeeta.DBL.db.Models;
+namespace vezeeta.DBL;
 
 public class User : IGenericActiveModel
 {
