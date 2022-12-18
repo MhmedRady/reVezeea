@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using vezeeta.DBL.db.GenericModels;
 
-namespace vezeeta.DBL.db.Models
+namespace vezeeta.DBL
 {
     public class Center : GenericNamedModel {
 

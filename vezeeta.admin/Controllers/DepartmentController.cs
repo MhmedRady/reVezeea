@@ -5,12 +5,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.Localization;
 using vezeeta.admin.Validations;
-using vezeeta.BL.GenericDTOs;
-using vezeeta.BL.Helpers;
-using vezeeta.BL.Managers;
-using vezeeta.BL.Managers.DepartmentManager;
-using vezeeta.DBL.db.context;
-using vezeeta.DBL.Repos.UserRepo;
+using vezeeta.BL;
+using vezeeta.DBL;
 
 namespace vezeeta.admin.Controllers;
 

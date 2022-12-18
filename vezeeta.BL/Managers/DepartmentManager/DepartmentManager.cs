@@ -5,11 +5,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using vezeeta.BL.GenericDTOs;
-using vezeeta.DBL.db.Models;
-using vezeeta.DBL.Repos.UserRepo;
+using vezeeta.BL;
+using vezeeta.DBL;
 
-namespace vezeeta.BL.Managers.DepartmentManager
+namespace vezeeta.BL
 {
     public class DepartmentManager : IDepartmentManager
     {

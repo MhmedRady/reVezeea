@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using vezeeta.BL.Helpers;
 
-namespace vezeeta.BL.GenericDTOs
+
+namespace vezeeta.BL
 {
     public class GenericNameDTOs: IGenericNameDTOs
     {

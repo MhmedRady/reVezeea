@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.CompilerServices;
 
-namespace vezeeta.BL.Helpers;
+namespace vezeeta.BL;
 
 public class Helper
 {

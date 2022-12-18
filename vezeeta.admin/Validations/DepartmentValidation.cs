@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
 using vezeeta.admin.Controllers;
-using vezeeta.BL.GenericDTOs;
+using vezeeta.BL;
 
 namespace vezeeta.admin.Validations;
 

@@ -10,16 +10,8 @@ using System.Text.Json.Serialization;
 using vezeeta.BL;
 using vezeeta.DBL;
 
-using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Migrations;
-using Microsoft.Extensions.Localization;
-using System.Globalization;
-using System.Text.Json.Serialization;
-using vezeeta.BL.Managers;
-using vezeeta.BL.Managers.DepartmentManager;
-using vezeeta.BL.Mapper;
-using vezeeta.DBL.db.context;
-using vezeeta.DBL.Repos.UserRepo;
+
 
 
 namespace vezeeta.admin
