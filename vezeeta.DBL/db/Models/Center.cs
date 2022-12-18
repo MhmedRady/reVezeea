@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using vezeeta.DBL.db.GenericModels;
+using vezeeta.DBL.db;
 
 namespace vezeeta.DBL
 {
