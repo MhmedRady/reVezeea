@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -21,7 +22,8 @@ namespace vezeeta.DBL.db.Models
         public string? phone { get; set; }
         public string? views { get; set; }
         public string? visitors { get; set; }
-
+        [DefaultValue(0.0)]
+        public float? amount { get; set; }
         public Department? Department { get; set; }    
 
         public User? User { get; set; } 
