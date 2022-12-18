@@ -18,5 +18,8 @@ public class DepartmentValidation : AbstractValidator<DepartmentDTO>
             .NotNull()
             .WithMessage("Department Arabic Name Can't Be Empty")
             .MinimumLength(2).WithMessage("Department Arabic Name length Can't Be less than 2 characters");
+
+        /*RuleFor(x => x.logo).Must(x => x.Equals("image/jpeg") || x.Equals("image/jpg") || x.Equals("image/png"))
+                .WithMessage("File type is larger than allowed");*/
     }
 }

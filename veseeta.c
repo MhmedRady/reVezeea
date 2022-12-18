@@ -15,9 +15,9 @@ departments
 
 centers 
 {
-	Id, Department_Id, User_Id?, name_en, name_ar, logo,
-	 email, mobile, phone, views, visitors, is_active,
-	 Created_at?, updated_at?
+	Id, Department_Id, User_Id?, name_en, name_ar, logo, amount
+	email, mobile, phone, views, visitors, is_active,
+	Created_at?, updated_at?
 }
 
 specialties 
