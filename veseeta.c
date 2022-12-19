@@ -15,7 +15,7 @@ departments
 
 centers 
 {
-	Id, Department_Id, User_Id?, name_en, name_ar, logo, amount
+	Id, Department_Id, User_Id?, Center_Id?, name_en, name_ar, logo, amount
 	email, mobile, phone, views, visitors, is_active,
 	Created_at?, updated_at?
 }
@@ -37,8 +37,8 @@ center_specialties
 
 users 
 {
-	Id, firstName, middleName, lastName, email, password, mobile?, profile_image?, N_ID?
-	is_admin, is_doctor, Created_at?, updated_at?
+	Id, firstName, middleName, lastName, email, password, mobile?, profile_image?, N_ID?,
+	dob, is_admin, is_doctor, Created_at?, updated_at?
 }
 
 /** ADDRESS **/
