@@ -11,9 +11,10 @@ public interface IDepartmentManager
 {
     public List<DepartmentDTO> Index();
     public DepartmentDTO? GetByID(Guid id);
-    public void Add(DepartmentDTO department);
-    public void Update(DepartmentDTO department);
+    public void Add(SetDepartmentDTO department);
+    public void Update(SetDepartmentDTO department);
     public DepartmentDTO Delete(Guid id);
     public bool IsActive(DepartmentDTO department);
-    public void Activate(DepartmentDTO department);
+    public void Activate(SetDepartmentDTO department);
+    public bool Find(DepartmentDTO department);
 }

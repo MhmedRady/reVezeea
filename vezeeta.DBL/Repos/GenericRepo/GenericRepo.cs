@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage;
 using System;
 using System.Collections.Generic;
@@ -49,10 +50,14 @@ public class GenericRepo<T> : IGenericRepo<T> where T : class
         this.vezeetaDB.SaveChanges();
 
     }
-
+    
     public void LoadData()
     {
 
     }
 
+    public IEnumerable<T>? _Any()
+    {
+        return this.vezeetaDB.Set<T>();
+    }
 }

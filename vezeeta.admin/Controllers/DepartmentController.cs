@@ -41,7 +41,7 @@ public class DepartmentController : Controller
         return View();
     }
     [HttpPost]
-    public ActionResult Create(DepartmentDTO department)
+    public ActionResult Create(SetDepartmentDTO department)
     {
         DepartmentValidation validator = new DepartmentValidation(localizer);
         ValidationResult result = validator.Validate(department);
@@ -54,8 +54,7 @@ public class DepartmentController : Controller
             return View(department);
         }
 
-        bool find = this.departmentManager.Index().Any(d => d.name_en == department.name_en)
-            || this.departmentManager.Index().Any(d => d.name_ar == department.name_ar);
+        bool find = departmentManager.Find(department);
 
         if(find)
         {

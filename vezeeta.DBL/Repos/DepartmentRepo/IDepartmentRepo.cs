@@ -5,11 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using vezeeta.DBL;
 
-namespace vezeeta.DBL
-{
-    public interface IDepartmentRepo : IGenericRepo<Department>
-    {
-        public User? GetByUserName(string userName);
+namespace vezeeta.DBL;
 
-    }
+public interface IDepartmentRepo : IGenericRepo<Department>
+{
+    public bool Find(Department department, bool chickName = true);
 }

@@ -27,8 +27,9 @@ namespace vezeeta.admin
             builder.Services.AddControllersWithViews();
 
             #region services
-            builder.Services.AddScoped<IAdminManager, AdminManager>();
-            builder.Services.AddScoped<IDepartmentRepo, DepartmentRepo>();
+            builder.Services.AddControllers()
+               .AddJsonOptions(o => o.JsonSerializerOptions
+                   .ReferenceHandler = ReferenceHandler.IgnoreCycles);
             #endregion
 
             #region Database
@@ -85,19 +86,14 @@ namespace vezeeta.admin
                 db.UseSqlServer(builder.Configuration.GetConnectionString("vezeetaDb"));
             });
 
-            builder.Services.AddControllers()
-               .AddJsonOptions(o => o.JsonSerializerOptions
-                   .ReferenceHandler = ReferenceHandler.IgnoreCycles);
             #region Repos
             builder.Services.AddScoped<IDepartmentRepo, DepartmentRepo>();
+            builder.Services.AddScoped<IUserRepo, UserRepo>();
             #endregion
 
             #region Manager
+            builder.Services.AddScoped<IAdminManager, AdminManager>();
             builder.Services.AddScoped<IDepartmentManager, DepartmentManager>();
-            #endregion
-
-            #region Mappers
-            builder.Services.AddAutoMapper(typeof(AutoMapperProfile).Assembly);
             #endregion
 
             var app = builder.Build();

@@ -26,12 +26,12 @@ namespace vezeeta.BL
             return mapper.Map<List<DepartmentDTO>>(departmentRepo.Index());
         }
 
-        public void Activate(DepartmentDTO department)
+        public void Activate(SetDepartmentDTO department)
         {
             throw new NotImplementedException();
         }
 
-        public void Add(DepartmentDTO department)
+        public void Add(SetDepartmentDTO department)
         {
             var dept = mapper.Map<Department>(department);
             departmentRepo.Add(dept);
@@ -53,10 +53,16 @@ namespace vezeeta.BL
             throw new NotImplementedException();
         }
 
-        public void Update(DepartmentDTO department)
+        public void Update(SetDepartmentDTO department)
         {
 
             throw new NotImplementedException();
+        }
+
+        public bool Find(DepartmentDTO department)
+        {
+            var dept = mapper.Map<Department>(department);
+            return departmentRepo.Find(dept);
         }
     }
 }

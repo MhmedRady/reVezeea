@@ -10,5 +10,7 @@ namespace vezeeta
     public interface IUserRepo : IGenericRepo<User>
     {
         public virtual void ActivateUser(User user) { }
+        public bool IsActive(User user);
+        public bool Find(User user, bool chickName = true);
     }
 }

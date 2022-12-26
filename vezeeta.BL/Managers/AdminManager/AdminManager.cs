@@ -6,10 +6,10 @@ namespace vezeeta.BL;
 
 public class AdminManager : IAdminManager
 {
-    private readonly IDepartmentRepo _adminRepo;
+    private readonly IUserRepo _adminRepo;
     private readonly IMapper _mapper;
 
-    public AdminManager(IDepartmentRepo adminRepo, IMapper mapper)
+    public AdminManager(IUserRepo adminRepo, IMapper mapper)
     {
         this._adminRepo = adminRepo;
         this._mapper = mapper;
@@ -46,12 +46,21 @@ public class AdminManager : IAdminManager
         throw new NotImplementedException();
     }
 
-    public AdminDTO? GetByUserName(string userName)
+    public bool chickLogin(AdminDTO admin)
     {
-        var admin = _adminRepo.GetByUserName(userName);
-        if (admin == null)
-            return null;
-        var Admin = _mapper.Map<AdminDTO>(admin);
-        return Admin;
+        var _admin = _adminRepo._Any();
+        return this._mapper.Map<Boolean>(_admin.Any(a=>a.is_active is false));
+    }
+
+    public bool Find(AdminDTO admin, bool checkUnique = true)
+    {
+        var _admin = _mapper.Map<User>(admin);
+        if (checkUnique)
+        {
+            return _adminRepo._Any().Any(
+                   a => a.userName == admin.userName ||
+                   a.email == admin.email);
+        }
+        return _adminRepo._Any().Any(a => a.Id == admin.Id);
     }
 }

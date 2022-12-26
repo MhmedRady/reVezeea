@@ -6,7 +6,7 @@ using vezeeta.BL;
 
 namespace vezeeta.admin.Validations;
 
-public class DepartmentValidation : AbstractValidator<DepartmentDTO>
+public class DepartmentValidation : AbstractValidator<SetDepartmentDTO>
 {
     private readonly IStringLocalizer<DepartmentController> localizer;
     public DepartmentValidation(IStringLocalizer<DepartmentController> _localizer)

@@ -6,8 +6,9 @@ public class AutoMapperProfile : Profile
 {
     public AutoMapperProfile()
     {
-        CreateMap<User, AdminDTO>();
-        //CreateMap<AdminDTO, User>();
+        /*CreateMap<User, AdminDTO>();*/
+        CreateMap<User, AdminDTO>().ReverseMap();
         CreateMap<Department, DepartmentDTO>();
+        CreateMap<SetDepartmentDTO, Department>();
     }
 }

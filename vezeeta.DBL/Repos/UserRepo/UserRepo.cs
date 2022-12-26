@@ -15,4 +15,17 @@ public class UserRepo : GenericRepo<User>, IUserRepo
     {
         vezeetaDB = _vezeetaDB;
     }
+
+    public virtual bool IsActive(User user)
+    {
+        return _Any().Where(a=>a.is_active == true && a.Id == user.Id).Any();
+    }
+    public bool Find(User user, bool chickName = true)
+    {
+        if (chickName is true)
+        {
+            return _Any().Any(d => d.userName == user.userName);
+        }
+        return _Any().Any(d => d.Id == user.Id);
+    }
 }

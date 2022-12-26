@@ -10,6 +10,8 @@ using vezeeta.DBL;
 
 namespace vezeeta.DBL;
 
+[Index(nameof(userName), IsUnique = true)]
+[Index(nameof(email), IsUnique = true)]
 public class User : IGenericActiveModel
 {
     public Guid Id { get; set; }

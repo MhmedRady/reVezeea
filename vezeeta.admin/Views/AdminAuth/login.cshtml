@@ -1,4 +1,4 @@
-﻿@model LoginViewModel
+﻿@model AdminDTO
 @{
     ViewBag.title = "Log In";
     Layout = "~/Views/Shared/Layout/_Layout_Login.cshtml";
@@ -27,7 +27,7 @@
                             <div class="card-body">
                                 <form class="form-horizontal" asp-controller="AdminAuth" asp-action="login" novalidate>
                                     <fieldset class="form-group position-relative has-icon-left">
-                                        <input type="text" asp-for="UserName" class="form-control input-lg" id="user-name" placeholder="Your Username"
+                                        <input type="text" asp-for="email" class="form-control input-lg" id="email" placeholder="Your Username"
                                            tabindex="1" required data-validation-required-message="Please enter your username.">
                                         <div class="form-control-position">
                                             <i class="ft-user"></i>
@@ -35,7 +35,7 @@
                                         <div class="help-block font-small-3"></div>
                                     </fieldset>
                                     <fieldset class="form-group position-relative has-icon-left">
-                                        <input type="password" asp-for="Password" class="form-control input-lg" id="password" placeholder="Enter Password"
+                                        <input type="password" asp-for="password" class="form-control input-lg" id="password" placeholder="Enter Password"
                                            tabindex="2" required data-validation-required-message="Please enter valid passwords.">
                                         <div class="form-control-position">
                                             <i class="la la-key"></i>

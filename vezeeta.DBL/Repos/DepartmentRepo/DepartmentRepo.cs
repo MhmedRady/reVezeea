@@ -15,9 +15,13 @@ public class DepartmentRepo : GenericRepo<Department>, IDepartmentRepo
     {
         vezeetaDB = _vezeetaDB;
     }
-
-    public User? GetByUserName(string userName)
+    public bool Find(Department department, bool chickName = true)
     {
-        return vezeetaDB.users.FirstOrDefault(u => u.userName == userName);
+        if (chickName is true)
+        {
+            return _Any().Any(d => d.name_ar == department.name_ar)
+            || _Any().Any(d => d.name_en == department.name_en);
+        }
+        return _Any().Any(d => d.Id == department.Id);
     }
 }
