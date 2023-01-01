@@ -16,5 +16,5 @@ public interface IAdminManager
     public AdminDTO Delete(Guid id);
     public bool IsAdmin(AdminDTO admin);
     public bool Find(AdminDTO admin, bool checkUnique = true);
-    public bool chickLogin(AdminDTO admin);
+    public AdminDTO? chickLogin(AdminDTO admin);
 }

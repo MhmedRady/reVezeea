@@ -16,11 +16,11 @@ namespace vezeeta.DBL.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    isactive = table.Column<bool>(name: "is_active", type: "bit", nullable: false),
+                    createdat = table.Column<DateTime>(name: "created_at", type: "datetime2", nullable: true, comment: "Created At DateTime"),
+                    updatedat = table.Column<DateTime>(name: "updated_at", type: "datetime2", nullable: true, comment: "Last Update DateTime"),
                     namear = table.Column<string>(name: "name_ar", type: "nvarchar(450)", nullable: false),
-                    nameen = table.Column<string>(name: "name_en", type: "nvarchar(450)", nullable: false),
-                    isactive = table.Column<bool>(name: "is_active", type: "bit", nullable: false, comment: "Entity Row activate status [True, False]"),
-                    createdat = table.Column<DateTime>(name: "created_at", type: "datetime2", nullable: true),
-                    updatedat = table.Column<DateTime>(name: "updated_at", type: "datetime2", nullable: true)
+                    nameen = table.Column<string>(name: "name_en", type: "nvarchar(450)", nullable: false)
                 },
                 constraints: table =>
                 {

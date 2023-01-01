@@ -7,23 +7,24 @@ using System.Text;
 using System.Threading.Tasks;
 using vezeeta.BL;
 using vezeeta.DBL;
+using vezeeta.DBL.UnitOfWork;
 
 namespace vezeeta.BL
 {
     public class DepartmentManager : IDepartmentManager
     {
-        private readonly IDepartmentRepo departmentRepo;
+        private readonly IUnitOfRepo _workRepo;
         private readonly IMapper mapper;
 
-        public DepartmentManager(IDepartmentRepo departmentRepo, IMapper mapper)
+        public DepartmentManager(IUnitOfRepo _workRepo, IMapper mapper)
         {
-            this.departmentRepo = departmentRepo;
+            this._workRepo = _workRepo;
             this.mapper = mapper;
         }
 
         public List<DepartmentDTO> Index()
         {
-            return mapper.Map<List<DepartmentDTO>>(departmentRepo.Index());
+            return mapper.Map<List<DepartmentDTO>>(_workRepo.DepartmentRepo.Index());
         }
 
         public void Activate(SetDepartmentDTO department)
@@ -33,9 +34,10 @@ namespace vezeeta.BL
 
         public void Add(SetDepartmentDTO department)
         {
+            department.created_at = DateTime.Now;
             var dept = mapper.Map<Department>(department);
-            departmentRepo.Add(dept);
-            departmentRepo.SaveChanges();
+            _workRepo.DepartmentRepo.Add(dept);
+            _workRepo.DepartmentRepo.SaveChanges();
         }
 
         public DepartmentDTO Delete(Guid id)
@@ -55,14 +57,14 @@ namespace vezeeta.BL
 
         public void Update(SetDepartmentDTO department)
         {
-
+            department.updated_at = DateTime.Now;
             throw new NotImplementedException();
         }
 
         public bool Find(DepartmentDTO department)
         {
             var dept = mapper.Map<Department>(department);
-            return departmentRepo.Find(dept);
+            return _workRepo.DepartmentRepo.Find(dept);
         }
     }
 }

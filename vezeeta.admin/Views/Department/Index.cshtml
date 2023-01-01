@@ -14,10 +14,9 @@
 <table class="table data-table table-striped table-bordered zero-configuration text-center">
     <thead>
         <tr>
-            <th>#</th>
+            <th>id</th>
             <th>@localizer["name"]</th>
             <th>@localizer["activate"]</th>
-            <th>@localizer["actions"]</th>
         </tr>
     </thead>
     <tbody>
@@ -38,12 +37,7 @@
                             <span class="activate badge badge-danger fw-bolder text-capitalize text-white">@localizer["inActive"]</span>
                         }
                     </td>
-                    <td>
-                        <a asp-action="Edit" asp-route-id="@item.Id" asp-controller="Category" class="btn btn-info white" data-toggle="tooltip" data-placement="top" title="@localizer["edit"]"><i class="ft-edit"></i></a>
-                        <a asp-action="activation" asp-route-id="@item.Id" class="btn btn-warning white" data-toggle="tooltip" data-placement="top" title="@localizer[item.is_active?"inActive":"isActive"]"><i class="ft-repeat"></i></a>
-                        <a onclick="return confirm('Are you sure you want to delete Category?')" asp-controller="Category" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger white"
-                            data-toggle="tooltip" data-placement="top" title="@localizer["delete"]"><i class="ft-trash-2"></i></a>
-                    </td>
+                    
                 </tr>
             }
         }
@@ -54,10 +48,9 @@
     </tbody>
     <tfoot>
         <tr>
-            <th>#</th>
+            <th>id</th>
             <th>@localizer["name"]</th>
             <th>@localizer["activate"]</th>
-            <th>@localizer["actions"]</th>
         </tr>
     </tfoot>
 </table>
@@ -66,10 +59,39 @@
 @section Scripts {
     <script src="~/admin/app-assets/vendors/js/tables/datatable/datatables.min.js" type="text/javascript"></script>
     <script>
-        $(document).ready(function () {
-            $(".data-table").DataTable();
 
-            /*$(".data-table").DataTable({
+
+        /*$(document).ready(function () {
+            $('.data-table').DataTable({
+                ajax: { url: "/Department/LoadData" },
+                columns: [
+                    { data: '#' },
+                    { data: 'name', name: '@localizer["name"]' },
+                    {
+                        data: "is_active", name: "@localizer["activate"]"
+
+                    },
+                    /*{
+                        data: "CategoryId",
+                        render: function (data, type, row) {
+
+                            return '<ul class="list-inline hstack gap-2 mb-0"> <li class="list-inline-item" data-bs-toggle="tooltip"data-bs-trigger="hover" data-bs-placement="top"title="View"><a href="javascript:void(0)" data-bs-toggle="modal"><i class="ri-eye-fill align-bottom text-muted" onclick="ShowViewPopUp(' + data + ')" ></i></a></li> <li class="list-inline-item" data-bs-toggle="tooltip"data-bs-trigger="hover" data-bs-placement="top"title="Edit" ><a class="edit-item-btn" href="javascript:void(0)"data-bs-toggle="modal" > <i class="ri-pencil-fill align-bottom text-muted" onclick="editButtonClick(' + data + ')"></i> </a> </li>    <li class="list-inline-item" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top"title="Delete"> <a class="remove-item-btn" data-bs-toggle="modal"href="javascript:void(0)" > <i class="ri-delete-bin-fill align-bottom text-muted" onclick="deleteCategory(' + data + ')"></i> </a></li></ul>';
+
+                        },
+                        className: "dt-body-center"
+                    },
+
+
+                ],
+            });
+        });
+        */
+
+
+
+        $(document).ready(function () {
+
+            $(".data-table").DataTable({
 
                 "processing": true, // for show progress bar  
                 "serverSide": true, // for process server side  
@@ -82,50 +104,13 @@
                     "type": "POST",
                     "datatype": "json"
                 },
-
-                "columnDefs":
-                    [{
-                        "targets": [0],
-                        "visible": false,
-                        "searchable": false
-                    },
-                    {
-                        "targets": [7],
-                        "searchable": false,
-                        "orderable": false
-                    },
-                    {
-                        "targets": [8],
-                        "searchable": false,
-                        "orderable": false
-                    },
-                    {
-                        "targets": [9],
-                        "searchable": false,
-                        "orderable": false
-                    }],
-
-                /*"columns": [
-                    { "data": "Id", "name": "Id", "autoWidth": true, "title": "Id" },
-                    { "data": "name", "name": "name", "autoWidth": true },
-                    { "name": "is_active", "title": "is_active", 
-                        "render": function (data, type, full, meta) { return full.is_active
-                            ?'<span class="activate badge badge-success fw-bolder text-capitalize text-white">'+@localizer["isActive"]+'</span>'
-                            :'<span class="activate badge badge-danger fw-bolder text-capitalize text-white" >'+@localizer["inActive"]+'</span>'}
-                    },
-                    /*{
-                        "render": function (data, type, full, meta) { return '<a class="btn btn-info" href="/Demo/Edit/' + full.CustomerID + '">Edit</a>'; }
-                    },
-                    {
-                        data: null, render: function (data, type, row) {
-                            return "<a href='#' class='btn btn-danger' onclick=DeleteData('" + row.CustomerID + "'); >Delete</a>";
-                        }
-                    },
-                    
+                "columns": [
+                    { "data": "id", "name": "id", "autoWidth": true, "title": "id" },
+                    { "data": "name", "name": '@localizer["name"]', "autoWidth": true },
+                    { "data": "is_active", "name": '@localizer["activate"]', "autoWidth": true },
                 ]
 
             });
-            */
         });
     </script>
 }

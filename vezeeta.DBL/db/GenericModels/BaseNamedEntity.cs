@@ -11,7 +11,7 @@ namespace vezeeta.DBL.db.GenericModels;
 
 [Index(nameof(name_ar), IsUnique = true)]
 [Index(nameof(name_en), IsUnique = true)]
-public class GenericNamedModel 
+public class BaseNamedEntity : IGenericNamedModel
 {
     [Key]
     public Guid Id { get; set; }
@@ -20,9 +20,11 @@ public class GenericNamedModel
     [Required]
     public string? name_en { get; set; }
     [DefaultValue(0)]
-    [Comment("Entity Row activate status [True, False]")]
     public bool is_active { get; set; }
+    [Comment("Created At DateTime")]
     [DefaultValue("getdate()")]
     public DateTime? created_at { get; set; }
+    [Comment("Last Update DateTime")]
     public DateTime? updated_at { get; set; }
+    
 }

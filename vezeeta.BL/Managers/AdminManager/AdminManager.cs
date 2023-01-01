@@ -1,23 +1,25 @@
 ﻿using AutoMapper;
 using System;
+using System.Diagnostics;
 using vezeeta.DBL;
+using vezeeta.DBL.UnitOfWork;
 
 namespace vezeeta.BL;
 
 public class AdminManager : IAdminManager
 {
-    private readonly IUserRepo _adminRepo;
+    private readonly IUnitOfRepo _workRepo;
     private readonly IMapper _mapper;
 
-    public AdminManager(IUserRepo adminRepo, IMapper mapper)
+    public AdminManager(IUnitOfRepo workRepo, IMapper mapper)
     {
-        this._adminRepo = adminRepo;
+        this._workRepo = workRepo;
         this._mapper = mapper;
     }
 
     public List<AdminDTO> Index()
     {
-        var adminRepoList = _adminRepo.Index();
+        var adminRepoList = _workRepo.UserRepo.Index();
         return _mapper.Map<List<AdminDTO>>(adminRepoList);
     }
 
@@ -46,10 +48,17 @@ public class AdminManager : IAdminManager
         throw new NotImplementedException();
     }
 
-    public bool chickLogin(AdminDTO admin)
+    public AdminDTO? chickLogin(AdminDTO admin)
     {
-        var _admin = _adminRepo._Any();
-        return this._mapper.Map<Boolean>(_admin.Any(a=>a.is_active is false));
+        var _admin = _workRepo.UserRepo._Any();
+
+        return this._mapper.Map<AdminDTO>(
+            _admin.Where(
+                a => a.email == admin.email &&
+                a.password == admin.password &&
+                a.is_active is true
+            ).FirstOrDefault()
+        );
     }
 
     public bool Find(AdminDTO admin, bool checkUnique = true)
@@ -57,10 +66,10 @@ public class AdminManager : IAdminManager
         var _admin = _mapper.Map<User>(admin);
         if (checkUnique)
         {
-            return _adminRepo._Any().Any(
-                   a => a.userName == admin.userName ||
+            return _workRepo.UserRepo._Any().Any(
+                   a => a.username == admin.userName ||
                    a.email == admin.email);
         }
-        return _adminRepo._Any().Any(a => a.Id == admin.Id);
+        return _workRepo.UserRepo._Any().Any(a => a.Id == admin.Id);
     }
 }

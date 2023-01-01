@@ -11,8 +11,7 @@ using vezeeta.BL;
 using vezeeta.DBL;
 
 using Microsoft.EntityFrameworkCore.Migrations;
-
-
+using vezeeta.DBL.UnitOfWork;
 
 namespace vezeeta.admin
 {
@@ -26,20 +25,17 @@ namespace vezeeta.admin
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
+            #region SqlDbContext
+            builder.Services.AddDbContext<VezeetaDB>(db =>
+            {
+                db.UseSqlServer(builder.Configuration.GetConnectionString("vezeetaDb"));
+            });
+            #endregion
+
             #region services
             builder.Services.AddControllers()
                .AddJsonOptions(o => o.JsonSerializerOptions
                    .ReferenceHandler = ReferenceHandler.IgnoreCycles);
-            #endregion
-
-            #region Database
-
-            builder.Services.AddDbContext<VezeetaDB>(
-                a =>
-                {
-                    a.UseSqlServer(builder.Configuration.GetConnectionString("DB"));
-                });
-
             #endregion
 
             #region auth
@@ -81,11 +77,6 @@ namespace vezeeta.admin
             });
             #endregion
 
-            builder.Services.AddDbContext<VezeetaDB>(db =>
-            {
-                db.UseSqlServer(builder.Configuration.GetConnectionString("vezeetaDb"));
-            });
-
             #region Repos
             builder.Services.AddScoped<IDepartmentRepo, DepartmentRepo>();
             builder.Services.AddScoped<IUserRepo, UserRepo>();
@@ -96,9 +87,14 @@ namespace vezeeta.admin
             builder.Services.AddScoped<IDepartmentManager, DepartmentManager>();
             #endregion
 
+            #region UnitOfWork
+            builder.Services.AddScoped<IUnitOfRepo, UnitOfRepo>();
+            builder.Services.AddScoped<IUnitOfManger, UnitOfManger>();
+            #endregion
+
             var app = builder.Build();
 
-            #region Language
+            #region App Language
             var supportedCultures = new[] { "en-US", "ar-EG" };
             var LocalizationOptions = new RequestLocalizationOptions()
                 .SetDefaultCulture(supportedCultures[0])
@@ -133,22 +129,3 @@ namespace vezeeta.admin
         }
     }
 }
-
-/*
- * migrationBuilder.InsertData(
-                table: "departments",
-                columns: new[]
-                {
-                    "name_ar",
-                    "name_en",
-                    "is_active",
-                },
-                values: new object[,]
-                {
-                    {"??????", "hospital", true },
-                    {"????? ????", "Private clinic", true },
-                    {"?????? ??????", "Outpatient clinics", true },
-                }
-                
-                );
-*/

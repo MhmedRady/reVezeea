@@ -10,12 +10,12 @@ using vezeeta.DBL;
 
 namespace vezeeta.DBL;
 
-[Index(nameof(userName), IsUnique = true)]
+[Index(nameof(username), IsUnique = true)]
 [Index(nameof(email), IsUnique = true)]
-public class User : IGenericActiveModel
+
+public class User : BaseEntity
 {
-    public Guid Id { get; set; }
-    public string? userName { get; set; }
+    public string? username { get; set; }
     public string? firstName { get; set; }
     public string? middleName { get; set; }
     public string? lastName { get; set; }
@@ -27,14 +27,15 @@ public class User : IGenericActiveModel
     [MinLength(14)]
     [Comment("Doctor User National ID")]
     public string? N_ID { get; set; }
+    [Comment("User Date Of Barth")]
+    [DataType(DataType.Date)]
+    [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+    public DateTime? dob { get; set; }
+    public string? gander { get; set; }
     [DefaultValue(false)]
     public bool is_admin { get; set; }
     [DefaultValue(false)]
-    public bool is_doctor { get; set; }    
-    public bool is_active { get; set; }
-    public DateTime? created_at { get; set; }
-    public DateTime? updated_at { get; set; }
-
+    public bool is_doctor { get; set; }
     public ICollection<Center> Centers { get; set; }
 
     public User()

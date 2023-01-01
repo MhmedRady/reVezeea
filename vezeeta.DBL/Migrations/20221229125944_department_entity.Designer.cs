@@ -12,8 +12,8 @@ using vezeeta.DBL;
 namespace vezeeta.DBL.Migrations
 {
     [DbContext(typeof(VezeetaDB))]
-    [Migration("20221225060038_users_data")]
-    partial class usersdata
+    [Migration("20221229125944_department_entity")]
+    partial class departmententity
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,72 +25,6 @@ namespace vezeeta.DBL.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("vezeeta.DBL.Center", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("DepartmentId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("UserId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<float?>("amount")
-                        .HasColumnType("real");
-
-                    b.Property<DateTime?>("created_at")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("email")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("is_active")
-                        .HasColumnType("bit")
-                        .HasComment("Entity Row activate status [True, False]");
-
-                    b.Property<string>("logo")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("mobile")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("name_ar")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("name_en")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("phone")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("updated_at")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("views")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("visitors")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("DepartmentId");
-
-                    b.HasIndex("UserId");
-
-                    b.HasIndex("name_ar")
-                        .IsUnique();
-
-                    b.HasIndex("name_en")
-                        .IsUnique();
-
-                    b.ToTable("centers");
-                });
-
             modelBuilder.Entity("vezeeta.DBL.Department", b =>
                 {
                     b.Property<Guid>("Id")
@@ -98,24 +32,31 @@ namespace vezeeta.DBL.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("created_at")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime2")
+                        .HasComment("Created At DateTime");
 
                     b.Property<bool>("is_active")
-                        .HasColumnType("bit")
-                        .HasComment("Entity Row activate status [True, False]");
+                        .HasColumnType("bit");
 
                     b.Property<string>("name_ar")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("name_en")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime?>("updated_at")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime2")
+                        .HasComment("Last Update DateTime");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("name_ar")
+                        .IsUnique();
+
+                    b.HasIndex("name_en")
+                        .IsUnique();
 
                     b.ToTable("departments");
                 });
@@ -131,7 +72,8 @@ namespace vezeeta.DBL.Migrations
                         .HasComment("Doctor User National ID");
 
                     b.Property<DateTime?>("created_at")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime2")
+                        .HasComment("Created At DateTime");
 
                     b.Property<string>("email")
                         .HasColumnType("nvarchar(450)");
@@ -167,9 +109,10 @@ namespace vezeeta.DBL.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("updated_at")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime2")
+                        .HasComment("Last Update DateTime");
 
-                    b.Property<string>("userName")
+                    b.Property<string>("username")
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
@@ -178,36 +121,11 @@ namespace vezeeta.DBL.Migrations
                         .IsUnique()
                         .HasFilter("[email] IS NOT NULL");
 
-                    b.HasIndex("userName")
+                    b.HasIndex("username")
                         .IsUnique()
-                        .HasFilter("[userName] IS NOT NULL");
+                        .HasFilter("[username] IS NOT NULL");
 
                     b.ToTable("users");
-                });
-
-            modelBuilder.Entity("vezeeta.DBL.Center", b =>
-                {
-                    b.HasOne("vezeeta.DBL.Department", "Department")
-                        .WithMany("Centers")
-                        .HasForeignKey("DepartmentId");
-
-                    b.HasOne("vezeeta.DBL.User", "User")
-                        .WithMany("Centers")
-                        .HasForeignKey("UserId");
-
-                    b.Navigation("Department");
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("vezeeta.DBL.Department", b =>
-                {
-                    b.Navigation("Centers");
-                });
-
-            modelBuilder.Entity("vezeeta.DBL.User", b =>
-                {
-                    b.Navigation("Centers");
                 });
 #pragma warning restore 612, 618
         }

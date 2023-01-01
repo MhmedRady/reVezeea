@@ -24,7 +24,7 @@ public class UserRepo : GenericRepo<User>, IUserRepo
     {
         if (chickName is true)
         {
-            return _Any().Any(d => d.userName == user.userName);
+            return _Any().Any(d => d.username == user.username);
         }
         return _Any().Any(d => d.Id == user.Id);
     }

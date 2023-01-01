@@ -21,7 +21,7 @@ namespace vezeeta.DBL.Migrations
                     },
                     values: new object[,]
                     {
-                        {Guid.NewGuid(),"مستشفي", "hospital", true },
+                        {Guid.NewGuid(),"مستشفي", "Hospital", true },
                         {Guid.NewGuid(),"عيادة خاصة", "Private clinic", true },
                         {Guid.NewGuid(),"عيادات خارجية", "Outpatient clinics", true },
                     }

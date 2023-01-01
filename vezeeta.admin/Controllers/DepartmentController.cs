@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.Localization;
+using System.Diagnostics;
 using vezeeta.admin.Validations;
 using vezeeta.BL;
 using vezeeta.DBL;
@@ -13,20 +14,20 @@ namespace vezeeta.admin.Controllers;
 public class DepartmentController : Controller
 {
     private readonly VezeetaDB vezeetaDB;
-    private readonly IDepartmentManager departmentManager;
+    private readonly IUnitOfManger _unitOfManger;
 
     private readonly IStringLocalizer<DepartmentController> localizer;
 
-    public DepartmentController(VezeetaDB vezeetaDB, IDepartmentManager departmentManager,
+    public DepartmentController(VezeetaDB vezeetaDB, IUnitOfManger unitOfManger,
         IStringLocalizer<DepartmentController> _localizer)
     {
         this.vezeetaDB = vezeetaDB;
-        this.departmentManager = departmentManager;
+        this._unitOfManger = unitOfManger;
         localizer = _localizer;
     }
     public ActionResult<IEnumerable<DepartmentDTO>> Index()
     {
-        var dapartments = departmentManager.Index();
+        var dapartments = _unitOfManger.DepartmentManager.Index();
 
         return View(dapartments);
     }
@@ -54,7 +55,7 @@ public class DepartmentController : Controller
             return View(department);
         }
 
-        bool find = departmentManager.Find(department);
+        bool find = _unitOfManger.DepartmentManager.Find(department);
 
         if(find)
         {
@@ -66,7 +67,7 @@ public class DepartmentController : Controller
         {
             try
             {
-                departmentManager.Add(department);
+                _unitOfManger.DepartmentManager.Add(department);
                 transaction.Commit();
                 TempData["success_msg"] = "Departmnet is exist";
             }
@@ -78,12 +79,6 @@ public class DepartmentController : Controller
         }
         return View();
     }
-
-    public ActionResult<DepartmentDTO> FindDepartment(Guid Id) 
-    { 
-        return departmentManager.GetByID(Id);
-    }
-
     public ActionResult LoadData()
     {
 
@@ -100,9 +95,9 @@ public class DepartmentController : Controller
             int pageSize = length != null ? Convert.ToInt32(length) : 0;
             int skip = start != null ? Convert.ToInt32(start) : 0;
             int recordsTotal = 0;
-
+            Debug.WriteLine(searchValue);
             // Getting all Customer data    
-            var customData = (from dept in departmentManager.Index()
+            var deptData = (from dept in _unitOfManger.DepartmentManager.Index()
                               select dept);
 
             //Sorting    
@@ -113,13 +108,13 @@ public class DepartmentController : Controller
             //Search    
             if (!string.IsNullOrEmpty(searchValue))
             {
-                customData = customData.Where(m => m.name.Contains(searchValue));
+                deptData = deptData.Where(d => d.name_en.Contains(searchValue));
             }
 
             //total number of rows count     
-            recordsTotal = customData.Count();
+            recordsTotal = deptData.Count();
             //Paging     
-            var data = customData.Skip(skip).Take(pageSize).ToList();
+            var data = deptData.Skip(skip).Take(pageSize).ToList();
             //Returning Json Data    
             return Json(new { draw = draw, recordsFiltered = recordsTotal, recordsTotal = recordsTotal, data = data });
 

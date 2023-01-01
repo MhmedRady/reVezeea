@@ -11,8 +11,10 @@ public class AdminLoginValidation : AbstractValidator<AdminDTO>
     public AdminLoginValidation(IStringLocalizer<AdminAuthController> _localizer)
     {
         RuleFor(a => a.email).NotNull()
-            .WithMessage("Email Can't Be Empty");
+            .WithMessage("Email Can't Be Empty")
+            .EmailAddress()
+            .WithMessage("Emaill Address is not a Correct!");
         RuleFor(a => a.password).NotNull()
-            .WithMessage("Email Can't Be Empty");
+            .WithMessage("Password Can't Be Empty");
     }
 }

@@ -8,14 +8,16 @@ using System.Text;
 using System.Threading.Tasks;
 using vezeeta.DBL.db.GenericModels;
 using vezeeta.DBL.db;
+using Microsoft.EntityFrameworkCore;
 
 namespace vezeeta.DBL
 {
-    public class Center : GenericNamedModel {
+    public class Center : BaseNamedEntity {
 
         [ForeignKey("DepartmentId")]
         public Guid? DepartmentId { get; set; }
         [ForeignKey("UserId")]
+        [Comment("Owner Doctor UserId Where User Is Doctor")]
         public Guid? UserId { get; set; }
         public string? logo { get; set; }
         public string? email { get; set; }
