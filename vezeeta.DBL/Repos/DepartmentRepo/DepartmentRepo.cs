@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Storage;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.SymbolStore;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,8 +20,8 @@ public class DepartmentRepo : GenericRepo<Department>, IDepartmentRepo
     {
         if (chickName is true)
         {
-            return _Any().Any(d => d.name_ar == department.name_ar)
-            || _Any().Any(d => d.name_en == department.name_en);
+            bool check = _Any().Any(d => d.name_ar == department.name_ar || d.name_en == department.name_en);
+            return check;
         }
         return _Any().Any(d => d.Id == department.Id);
     }

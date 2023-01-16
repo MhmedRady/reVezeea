@@ -19,14 +19,14 @@ namespace vezeeta.DBL.Migrations
                 comment: "User Date Of Barth");
 
             migrationBuilder.AddColumn<string>(
-                name: "gander",
+                name: "gender",
                 table: "users",
                 type: "nvarchar(max)",
                 nullable: true);
 
             migrationBuilder.Sql(
-                "ALTER TABLE users Add gender varchar(10) NULL CONSTRAINT CHK_Column_Type CHECK (gender IN('male', 'female'))"
-                );
+                "ALTER TABLE users ADD CONSTRAINT CheckGenderConstraint CHECK (gender in ('female','male'))"
+            );
         }
 
         /// <inheritdoc />
@@ -37,7 +37,7 @@ namespace vezeeta.DBL.Migrations
                 table: "users");
 
             migrationBuilder.DropColumn(
-                name: "gander",
+                name: "gender",
                 table: "users");
         }
     }

@@ -18,12 +18,31 @@ namespace vezeeta.DBL.Migrations
                         "name_ar",
                         "name_en",
                         "is_active",
+                        "created_at"
                     },
                     values: new object[,]
                     {
-                        {Guid.NewGuid(),"مستشفي", "Hospital", true },
-                        {Guid.NewGuid(),"عيادة خاصة", "Private clinic", true },
-                        {Guid.NewGuid(),"عيادات خارجية", "Outpatient clinics", true },
+                        {Guid.NewGuid(),"مستشفي", "Hospital", true, DateTime.Now },
+                        {Guid.NewGuid(),"عيادة خاصة", "Private clinic", true, DateTime.Now },
+                        {Guid.NewGuid(),Faker.Name.First(), Faker.Name.First(), true, DateTime.Now },
+                        {Guid.NewGuid(),Faker.Name.First(), Faker.Name.First(), true, DateTime.Now },
+                        {Guid.NewGuid(),Faker.Name.First(), Faker.Name.First(), true, DateTime.Now },
+                        {Guid.NewGuid(),Faker.Name.First(), Faker.Name.First(), true, DateTime.Now },
+                        {Guid.NewGuid(),Faker.Name.First(), Faker.Name.First(), true, DateTime.Now },
+                        {Guid.NewGuid(),Faker.Name.First(), Faker.Name.First(), true, DateTime.Now },
+                        {Guid.NewGuid(),Faker.Name.First(), Faker.Name.First(), true, DateTime.Now },
+                        {Guid.NewGuid(),Faker.Name.First(), Faker.Name.First(), true, DateTime.Now },
+
+                        {Guid.NewGuid(),Faker.Name.First(), Faker.Name.First(), true, DateTime.Now },
+                        {Guid.NewGuid(),Faker.Name.First(), Faker.Name.First(), true, DateTime.Now },
+                        {Guid.NewGuid(),Faker.Name.First(), Faker.Name.First(), true, DateTime.Now },
+                        {Guid.NewGuid(),Faker.Name.First(), Faker.Name.First(), true, DateTime.Now },
+                        {Guid.NewGuid(),Faker.Name.First(), Faker.Name.First(), true, DateTime.Now },
+                        {Guid.NewGuid(),Faker.Name.First(), Faker.Name.First(), true, DateTime.Now },
+                        {Guid.NewGuid(),Faker.Name.First(), Faker.Name.First(), true, DateTime.Now },
+                        {Guid.NewGuid(),Faker.Name.First(), Faker.Name.First(), true, DateTime.Now },
+                        {Guid.NewGuid(),Faker.Name.First(), Faker.Name.First(), true, DateTime.Now },
+                        {Guid.NewGuid(),Faker.Name.First(), Faker.Name.First(), true, DateTime.Now },
                     }
                 );
         }

@@ -31,7 +31,7 @@ public class User : BaseEntity
     [DataType(DataType.Date)]
     [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
     public DateTime? dob { get; set; }
-    public string? gander { get; set; }
+    public string? gender { get; set; }
     [DefaultValue(false)]
     public bool is_admin { get; set; }
     [DefaultValue(false)]

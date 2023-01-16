@@ -10,5 +10,5 @@ public interface IUnitOfRepo
 {
     IUserRepo UserRepo { get; }
     IDepartmentRepo DepartmentRepo { get; }
-
+    
 }

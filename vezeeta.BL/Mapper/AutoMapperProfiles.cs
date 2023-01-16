@@ -8,7 +8,6 @@ public class AutoMapperProfile : Profile
     {
         CreateMap<User, AdminDTO>();
         /*CreateMap<User, AdminDTO>().ReverseMap();*/
-        CreateMap<Department, DepartmentDTO>();
-        CreateMap<SetDepartmentDTO, Department>();
+        CreateMap<Department, DepartmentDTO>().ReverseMap();
     }
 }

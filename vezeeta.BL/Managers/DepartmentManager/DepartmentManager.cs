@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Azure.Core;
+using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,17 +23,22 @@ namespace vezeeta.BL
             this.mapper = mapper;
         }
 
-        public List<DepartmentDTO> Index()
+        public IEnumerable<DepartmentDTO> Index()
         {
-            return mapper.Map<List<DepartmentDTO>>(_workRepo.DepartmentRepo.Index());
+            return mapper.Map<IEnumerable<DepartmentDTO>>(_workRepo.DepartmentRepo.Index());
         }
 
-        public void Activate(SetDepartmentDTO department)
+        public bool Activate(Guid id)
         {
-            throw new NotImplementedException();
+            var dept = _workRepo.DepartmentRepo.GetByID(id);
+            if(dept is null) { return false; }
+            dept.is_active = !dept.is_active;
+            _workRepo.DepartmentRepo.Update(dept);
+            _workRepo.DepartmentRepo.SaveChanges();
+            return true;
         }
 
-        public void Add(SetDepartmentDTO department)
+        public void Add(DepartmentDTO department)
         {
             department.created_at = DateTime.Now;
             var dept = mapper.Map<Department>(department);
@@ -40,31 +46,48 @@ namespace vezeeta.BL
             _workRepo.DepartmentRepo.SaveChanges();
         }
 
-        public DepartmentDTO Delete(Guid id)
+        public bool Delete(Guid id)
         {
-            throw new NotImplementedException();
+            var dept = _workRepo.DepartmentRepo.GetByID(id);
+            if(dept is null) { return false; }
+            _workRepo.DepartmentRepo.Delete(dept);
+            _workRepo.DepartmentRepo.SaveChanges();
+            return true;
         }
 
         public DepartmentDTO? GetByID(Guid id)
         {
-            throw new NotImplementedException();
+            var dept = _workRepo.DepartmentRepo.GetByID(id);
+            if(dept is null) { return null; }
+            return mapper.Map<DepartmentDTO>(dept);
         }
 
-        public bool IsActive(DepartmentDTO department)
+        public bool IsActive(Guid id)
         {
-            throw new NotImplementedException();
+            var dept = _workRepo.DepartmentRepo.GetByID(id);
+            if(dept is null || dept.is_active is false) { return false; }
+            return true;
         }
 
-        public void Update(SetDepartmentDTO department)
+        public bool Update(DepartmentDTO department)
         {
-            department.updated_at = DateTime.Now;
-            throw new NotImplementedException();
+            var dept = _workRepo.DepartmentRepo.GetByID(department.Id);
+            if(dept is null) { return false; }
+            var _dept = mapper.Map(department, dept);
+            this._workRepo.DepartmentRepo.Update(dept);
+            this._workRepo.DepartmentRepo.SaveChanges();
+            return true;
         }
 
-        public bool Find(DepartmentDTO department)
+        public bool Find(DepartmentDTO? department)
         {
             var dept = mapper.Map<Department>(department);
             return _workRepo.DepartmentRepo.Find(dept);
+        }
+
+        public IEnumerable<DepartmentDTO>? LoadData()
+        {
+            return mapper.Map<ICollection<DepartmentDTO>>(_workRepo.DepartmentRepo.LoadData());
         }
     }
 }

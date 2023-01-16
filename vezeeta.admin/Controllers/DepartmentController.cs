@@ -1,20 +1,21 @@
 ﻿using FluentValidation.Results;
-using FluentValidation.TestHelper;
+
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.Localization;
-using System.Diagnostics;
+
 using vezeeta.admin.Validations;
 using vezeeta.BL;
 using vezeeta.DBL;
 
 namespace vezeeta.admin.Controllers;
 
-public class DepartmentController : Controller
+public class DepartmentController : _Controller
 {
     private readonly VezeetaDB vezeetaDB;
     private readonly IUnitOfManger _unitOfManger;
+    private const string IVIEW = "Views/Department/";
 
     private readonly IStringLocalizer<DepartmentController> localizer;
 
@@ -25,24 +26,19 @@ public class DepartmentController : Controller
         this._unitOfManger = unitOfManger;
         localizer = _localizer;
     }
+    [HttpGet]
     public ActionResult<IEnumerable<DepartmentDTO>> Index()
     {
-        var dapartments = _unitOfManger.DepartmentManager.Index();
-
-        return View(dapartments);
-    }
-    [HttpGet]
-    public ActionResult Create()
-    {
         return View();
     }
     [HttpGet]
-    public ActionResult Update()
+    public ActionResult Create(DepartmentDTO? departmentDto)
     {
-        return View();
+        return View(departmentDto);
     }
+    
     [HttpPost]
-    public ActionResult Create(SetDepartmentDTO department)
+    public ActionResult Store(DepartmentDTO department)
     {
         DepartmentValidation validator = new DepartmentValidation(localizer);
         ValidationResult result = validator.Validate(department);
@@ -52,15 +48,15 @@ public class DepartmentController : Controller
             {
                 TempData[err.PropertyName] = err.ErrorMessage;
             }
-            return View(department);
+            return RedirectToAction("Create");
         }
 
         bool find = _unitOfManger.DepartmentManager.Find(department);
 
         if(find)
         {
-            TempData["error_msg"] = "Departmnet is exist";
-            return View(department);
+            TempData["error_msg"] = "Department already exist Before";
+            return RedirectToAction("Create");
         }
 
         using (IDbContextTransaction transaction = vezeetaDB.Database.BeginTransaction())
@@ -69,7 +65,67 @@ public class DepartmentController : Controller
             {
                 _unitOfManger.DepartmentManager.Add(department);
                 transaction.Commit();
-                TempData["success_msg"] = "Departmnet is exist";
+                TempData["success_msg"] = "Department Created Successfully!";
+            }
+            catch (Exception ex)
+            {
+                transaction.Rollback();
+                TempData["error_msg"] = ex.Message;
+                return RedirectToAction("Create");
+            }
+        }
+        return RedirectToAction("Index");
+    }
+    
+    [HttpGet]
+    public ActionResult Edit(Guid id)
+    {
+        DepartmentDTO? department = _unitOfManger.DepartmentManager.GetByID(id);
+
+        if (department is null)
+        {
+            TempData["error_msg"] = "Department Not Found";
+            return RedirectToAction("index");
+        }
+        return View(department);
+    }
+    [HttpPost]
+    public ActionResult Update(Guid? id, SetDepartmentDTO department)
+    {
+
+        DepartmentValidation validator = new DepartmentValidation(localizer);
+        ValidationResult result = validator.Validate(department);
+        if (!result.IsValid)
+        {
+            foreach (var err in result.Errors)
+            {
+                TempData[err.PropertyName] = err.ErrorMessage;
+            }
+            return RedirectToAction("Edit", department);
+        }
+        
+        bool find = _unitOfManger.DepartmentManager.Index()
+            .Where(dept => dept.Id != department.Id)
+            .Any(dept => dept.name_en == department.name_en || dept.name_ar == department.name_ar);
+
+        if (find)
+        {
+            TempData["error_msg"] = "Department already exist Before";
+            return RedirectToAction("Edit", department.Id);
+        }
+
+        using (IDbContextTransaction transaction = vezeetaDB.Database.BeginTransaction())
+        {
+            try
+            {
+                var update = _unitOfManger.DepartmentManager.Update(department);
+                if (!update)
+                {
+                    TempData["error_msg"] = "Department Not Found!";
+                    return RedirectToAction("Index");
+                }
+                transaction.Commit();
+                TempData["success_msg"] = "Department data updated Successfully!";
             }
             catch (Exception ex)
             {
@@ -77,53 +133,75 @@ public class DepartmentController : Controller
                 TempData["error_msg"] = ex.Message;
             }
         }
-        return View();
+
+        return  RedirectToAction("Edit", new {id = department.Id});
     }
+
+    public ActionResult Delete(Guid id)
+    {
+        DepartmentDTO? department = _unitOfManger.DepartmentManager.GetByID(id);
+
+        if (department is null)
+        {
+            TempData["error_msg"] = "Department Not Found";
+            return RedirectToAction("index");
+        }
+
+        using (IDbContextTransaction transaction = vezeetaDB.Database.BeginTransaction())
+        {
+            try
+            {
+                bool del = this._unitOfManger.DepartmentManager.Delete(id);
+                if (!del)
+                {
+                    TempData["error_msg"] = "Department Not Found";
+                    return RedirectToAction("index");
+                }
+                transaction.Commit();
+            }
+            catch (Exception e)
+            {
+                transaction.Rollback();
+                TempData["error_msg"] = e.Message;
+            }
+            return RedirectToAction("Index");
+        }
+    }
+
+    public ActionResult Activate(Guid id)
+    {
+        DepartmentDTO? department = _unitOfManger.DepartmentManager.GetByID(id);
+
+        if (department is null)
+        {
+            TempData["error_msg"] = "Department Not Found";
+            return RedirectToAction("index");
+        }
+
+        using (IDbContextTransaction transaction = vezeetaDB.Database.BeginTransaction())
+        {
+            try
+            {
+                bool del = this._unitOfManger.DepartmentManager.Activate(id);
+                if (!del)
+                {
+                    TempData["error_msg"] = "Department Not Found";
+                    return RedirectToAction("index");
+                }
+                transaction.Commit();
+            }
+            catch (Exception e)
+            {
+                transaction.Rollback();
+                TempData["error_msg"] = e.Message;
+            }
+            return RedirectToAction("Index");
+        }
+    }
+    
     public ActionResult LoadData()
     {
-
-        try
-        {
-            var draw = Request.Form["draw"].FirstOrDefault();
-            var start = Request.Form["start"].FirstOrDefault();
-            var length = Request.Form["length"].FirstOrDefault();
-            var sortColumn = Request.Form["columns[" + Request.Form["order[0][column]"].FirstOrDefault() + "][name]"].FirstOrDefault();
-            var sortColumnDir = Request.Form["order[0][dir]"].FirstOrDefault();
-            var searchValue = Request.Form["search[value]"].FirstOrDefault();
-
-            //Paging Size (10,20,50,100)    
-            int pageSize = length != null ? Convert.ToInt32(length) : 0;
-            int skip = start != null ? Convert.ToInt32(start) : 0;
-            int recordsTotal = 0;
-            Debug.WriteLine(searchValue);
-            // Getting all Customer data    
-            var deptData = (from dept in _unitOfManger.DepartmentManager.Index()
-                              select dept);
-
-            //Sorting    
-            /*if (!(string.IsNullOrEmpty(sortColumn) && string.IsNullOrEmpty(sortColumnDir)))
-            {
-                customerData = customerData.OrderBy(sortColumn + " " + sortColumnDir);
-            }*/
-            //Search    
-            if (!string.IsNullOrEmpty(searchValue))
-            {
-                deptData = deptData.Where(d => d.name_en.Contains(searchValue));
-            }
-
-            //total number of rows count     
-            recordsTotal = deptData.Count();
-            //Paging     
-            var data = deptData.Skip(skip).Take(pageSize).ToList();
-            //Returning Json Data    
-            return Json(new { draw = draw, recordsFiltered = recordsTotal, recordsTotal = recordsTotal, data = data });
-
-        }
-        catch (Exception)
-        {
-            throw;
-        }
-
+        var iEData = _unitOfManger.DepartmentManager.LoadData();
+        return this.DataTable(iEData);
     }
-
 }

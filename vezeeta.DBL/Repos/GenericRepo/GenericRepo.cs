@@ -34,14 +34,14 @@ public class GenericRepo<T> : IGenericRepo<T> where T : class
         return this.vezeetaDB.Set<T>().ToList();
     }
 
-    public T? Show(Guid id)
+    public T? GetByID(Guid id)
     {
         return this.vezeetaDB.Set<T>().Find(id);
     }
 
     public void Update(T entity)
     {
-
+        vezeetaDB.Set<T>().Update(entity);
     }
 
     void IGenericRepo<T>.SaveChanges()
@@ -51,9 +51,10 @@ public class GenericRepo<T> : IGenericRepo<T> where T : class
 
     }
     
-    public void LoadData()
+    public IEnumerable<T>? LoadData()
     {
-
+        return (from repo in this.Index()
+                select repo);
     }
 
     public IEnumerable<T>? _Any()
