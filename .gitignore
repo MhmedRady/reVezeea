@@ -3,12 +3,13 @@
 ################################################################################
 
 .vs/
+*.idea
 
 *.bin
 *.sqlite
 *.vsidx
 obj*
 bin*
-/Luxury_Back/.vscode
+.vscode/
 appsettings*
 /adminPanel/.vscode
