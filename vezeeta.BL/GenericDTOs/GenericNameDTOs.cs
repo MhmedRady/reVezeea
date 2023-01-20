@@ -26,6 +26,5 @@ namespace vezeeta.BL
         {
             get => Helper.getLnag() == "ar" ? slug_ar : slug_en;
         }
-        
     }
 }

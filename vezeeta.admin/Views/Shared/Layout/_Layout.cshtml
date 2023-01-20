@@ -7,11 +7,11 @@
 <html class="loading" lang="en" dir="@isRTL">
 <head>
 
-    <partial name="../Panel/_Head.cshtml" />
+    <partial name="Panel/_Head" />
     @RenderSection("Head", required: false)
 
     @*START PANEL STAYLE LINKS*@
-    <partial name="../Panel/_Style.cshtml" />
+    <partial name="Panel/_Style" />
 
     <!-- BEGIN Page Level CSS-->
     @RenderSection("Styles", required: false)
@@ -28,11 +28,11 @@
 
     <header>
         <!-- fixed-top NavBar-->
-        <partial name="../Panel/_NavBar.cshtml" />
+        <partial name="Panel/_NavBar" />
     </header>
     
     <aside>
-        <partial name="../Panel/_SideBar.cshtml" />
+        <partial name="Panel/_SideBar" />
     </aside>
 
     <div class="app-content content">
@@ -46,7 +46,7 @@
             </div>
         </div>
     </div>
-<partial name="../Panel/_Script.cshtml" />
+<partial name="Panel/_Script" />
     
 <!-- BEGIN PAGE LEVEL JS-->
     @RenderSection("Scripts", required: false)

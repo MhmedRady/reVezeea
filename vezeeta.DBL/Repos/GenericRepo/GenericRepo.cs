@@ -46,9 +46,7 @@ public class GenericRepo<T> : IGenericRepo<T> where T : class
 
     void IGenericRepo<T>.SaveChanges()
     {
-
         this.vezeetaDB.SaveChanges();
-
     }
     
     public IEnumerable<T>? LoadData()

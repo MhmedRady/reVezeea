@@ -17,12 +17,16 @@ public class BaseNamedEntity : IGenericNamedModel
     public Guid Id { get; set; }
     [Required]
     public string? name_ar { get; set; }
-    public string? slug_ar { get; set; }
-
+    public string? slug_ar { 
+        get => this.name_ar.Trim().ToLower().Replace(" ", "_"); 
+        set => this.name_ar.Trim().ToLower().Replace(" ", "_"); 
+    }
     [Required]
     public string? name_en { get; set; }
-    public string? slug_en { get; set; }
-
+    public string? slug_en { 
+        get => this.name_en.Trim().ToLower().Replace(" ", "_"); 
+        set => this.name_en.Trim().ToLower().Replace(" ", "_"); 
+    }
     [DefaultValue(0)]
     public bool is_active { get; set; }
     [Comment("Created At DateTime")]

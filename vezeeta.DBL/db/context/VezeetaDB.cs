@@ -24,7 +24,7 @@ public class VezeetaDB : DbContext
         // Department
         modelBuilder.Entity<Department>().ToTable("departments").HasKey(d=>d.Id);
         modelBuilder.Entity<Department>().Property(d => d.created_at).HasDefaultValueSql("getdate()");
-
+        
         // Center
         /*modelBuilder.Entity<Center>().ToTable("centers").HasKey(c=>c.Id);
         modelBuilder.Entity<Department>().HasMany(d=>d.Centers).WithOne(c=>c.Department).HasForeignKey(c=>c.DepartmentId);
