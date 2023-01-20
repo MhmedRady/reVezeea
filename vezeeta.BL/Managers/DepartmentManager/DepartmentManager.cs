@@ -58,7 +58,7 @@ namespace vezeeta.BL
         public DepartmentDTO? GetByID(Guid id)
         {
             var dept = _workRepo.DepartmentRepo.GetByID(id);
-            if(dept is null) { return null; }
+            if(dept is null) return null;
             return mapper.Map<DepartmentDTO>(dept);
         }
 
@@ -73,9 +73,9 @@ namespace vezeeta.BL
         {
             var dept = _workRepo.DepartmentRepo.GetByID(department.Id);
             if(dept is null) { return false; }
+            dept.created_at = department.created_at;
             var _dept = mapper.Map(department, dept);
             dept.updated_at = DateTime.Now;
-            dept.created_at = department.created_at;
             this._workRepo.DepartmentRepo.Update(dept);
             this._workRepo.DepartmentRepo.SaveChanges();
             return true;

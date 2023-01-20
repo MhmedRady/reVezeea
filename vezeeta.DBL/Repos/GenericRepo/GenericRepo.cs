@@ -18,7 +18,6 @@ public class GenericRepo<T> : IGenericRepo<T> where T : class
     {
         this.vezeetaDB = _vezeetaDB;
     }
-
     public void Add(T entity)
     {
         vezeetaDB.Set<T>().Add(entity);

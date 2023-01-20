@@ -14,9 +14,8 @@ namespace vezeeta.DBL;
 public class Department : BaseNamedEntity
 {
 
-    /*public ICollection<Center> Centers { get; set; }
-
-    public Department() { 
-        Centers = new HashSet<Center>();
-    }*/
+     public ICollection<Center> Centers { get; set; }
+     public Department() { 
+         Centers = new HashSet<Center>();
+     }
 }

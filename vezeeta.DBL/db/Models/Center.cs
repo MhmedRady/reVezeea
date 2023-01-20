@@ -23,14 +23,14 @@ namespace vezeeta.DBL
         public string? email { get; set; }
         public string? mobile { get; set; }
         public string? phone { get; set; }
-        public string? views { get; set; }
-        public string? visitors { get; set; }
+        [DefaultValue(0)]
+        public int views { get; set; }
+        [DefaultValue(0)]
+        public int visitors { get; set; }
         [DefaultValue(0.0)]
         public float? amount { get; set; }
-        public Department? Department { get; set; }    
-
-        public User? User { get; set; } 
-
+        public Department? Department { get; set; }
+        public User? User { get; set; }
         public Center() { 
 
         }
