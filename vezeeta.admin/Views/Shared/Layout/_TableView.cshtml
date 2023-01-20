@@ -3,8 +3,8 @@
     Layout = "~/Views/Shared/Layout/_CardView.cshtml";
 }
 @section Styles {
-    <link rel="stylesheet" type="text/css" href="~/assets/css/core/menu/menu-types/vertical-menu-modern.css">
-    <link rel="stylesheet" type="text/css" href="~/app-assets/css/core/colors/palette-gradient.css">
+    <link rel="stylesheet" type="text/css" href="~/admin/assets/css/core/menu/menu-types/vertical-menu-modern.css">
+    <link rel="stylesheet" type="text/css" href="~/admin/app-assets/css/core/colors/palette-gradient.css">
 }
 
 <section id="configuration">
@@ -23,10 +23,10 @@
                         </ul>
                     </div>
                 </div>
-                <partial name="../Panel/_TempMesages.cshtml" />
+                <partial name="Panel/_TempMessages" />
                 <div class="card-content collapse show">
                     <div class="card-body card-dashboard overflow-x-auto">
-                        @RenderBody()
+                        
                     </div>
                 </div>
             </div>

@@ -41,6 +41,8 @@ namespace vezeeta.BL
         public void Add(DepartmentDTO department)
         {
             department.created_at = DateTime.Now;
+            department.slug_ar = department.name_ar.Replace(" ", "-");
+            department.slug_en = department.name_en.Replace(" ", "-");
             var dept = mapper.Map<Department>(department);
             _workRepo.DepartmentRepo.Add(dept);
             _workRepo.DepartmentRepo.SaveChanges();
@@ -74,6 +76,9 @@ namespace vezeeta.BL
             var dept = _workRepo.DepartmentRepo.GetByID(department.Id);
             if(dept is null) { return false; }
             var _dept = mapper.Map(department, dept);
+            dept.slug_ar = dept.name_ar.Trim().ToLower().Replace(" ", "-");
+            dept.slug_en = dept.name_en.Trim().ToLower().Replace(" ", "-");
+            dept.updated_at = DateTime.Now;
             this._workRepo.DepartmentRepo.Update(dept);
             this._workRepo.DepartmentRepo.SaveChanges();
             return true;

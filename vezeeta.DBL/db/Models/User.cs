@@ -36,10 +36,10 @@ public class User : BaseEntity
     public bool is_admin { get; set; }
     [DefaultValue(false)]
     public bool is_doctor { get; set; }
-    public ICollection<Center> Centers { get; set; }
+    // public ICollection<Center> Centers { get; set; }
 
-    public User()
-    {
-        Centers = new HashSet<Center>();
-    }
+    // public User()
+    // {
+    //     Centers = new HashSet<Center>();
+    // }
 }

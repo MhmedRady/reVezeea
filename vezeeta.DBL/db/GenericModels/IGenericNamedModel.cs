@@ -12,5 +12,7 @@ public interface IGenericNamedModel : IGenericActiveModel
 {
 
     public string? name_ar { get; set; }
+    public string? slug_ar { get; set; }
     public string? name_en { get; set; }
+    public string? slug_en { get; set; }
 }

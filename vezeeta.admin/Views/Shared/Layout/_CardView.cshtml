@@ -1,6 +1,6 @@
 ﻿
 @{
-    Layout = "~/Views/Shared/Layout/_Layout.cshtml";
+    Layout = "Layout/_Layout";
 }
 @section Styles {
     <link rel="stylesheet"
@@ -24,7 +24,7 @@
                         </ul>
                     </div>
                 </div>
-                <partial name="../Panel/_TempMesages.cshtml" />
+                <partial name="Panel/_TempMessages" />
                 <div class="card-content collapse show">
                     <div class="card-body card-dashboard overflow-x-auto">
                         @RenderBody()
