@@ -30,5 +30,17 @@ public class VezeetaDB : DbContext
         modelBuilder.Entity<Department>().HasMany(d=>d.Centers).WithOne(c=>c.Department).HasForeignKey(c=>c.DepartmentId);
         modelBuilder.Entity<User>().HasMany(d=>d.Centers).WithOne(c=>c.User).HasForeignKey(c=>c.UserId);
 
+        /*modelBuilder.Entity<Center>().HasData(
+            new Center
+            {
+                Id = Guid.NewGuid(),
+                name_ar = "Center 1",
+                name_en = "Center 1",
+                created_at = DateTime.Now,
+                UserId = Guid.Parse("B2C2EBF4-76E9-4395-9279-DA8DB9A69CBB"),
+                email = "center1@asp.net",
+            }
+        );*/
+
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,6 +11,8 @@ namespace vezeeta.BL
     public class GenericNameDTOs: IGenericNameDTOs
     {
         public Guid Id { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int uId { get; set; }
         public string? name_ar { get; set; }
         public string? slug_ar { get; set; }
         public string? name_en { get; set; }

@@ -60,7 +60,7 @@ public class Helper
     public static Dictionary<string, object>? jsonResult(object? obj, int? status = 200)
     {
         var result = new Dictionary<string, object>();
-        result["status"] = 200;
+        result["status"] = status;
         result["data"] = obj;
         return result;
     }

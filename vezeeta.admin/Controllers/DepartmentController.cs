@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.Localization;
-
+using System.Diagnostics;
 using vezeeta.admin.Validations;
 using vezeeta.BL;
 using vezeeta.DBL;
@@ -29,6 +29,7 @@ public class DepartmentController : _Controller
     [HttpGet]
     public ActionResult<IEnumerable<DepartmentDTO>> Index()
     {
+        this.TableColumns();
         return View();
     }
     [HttpGet]
@@ -136,15 +137,16 @@ public class DepartmentController : _Controller
 
         return  RedirectToAction("Edit", new {id = department.Id});
     }
-
+    [HttpDelete]
     public ActionResult Delete(Guid id)
     {
         DepartmentDTO? department = _unitOfManger.DepartmentManager.GetByID(id);
-
+        var result = new Dictionary<string, object>();
         if (department is null)
         {
-            TempData["error_msg"] = "Department Not Found";
-            return RedirectToAction("index");
+            result.Add("msg", "Department is Not Exist");
+            result.Add("status", 404);
+            return Json(result);
         }
 
         using (IDbContextTransaction transaction = vezeetaDB.Database.BeginTransaction())
@@ -154,17 +156,22 @@ public class DepartmentController : _Controller
                 bool del = this._unitOfManger.DepartmentManager.Delete(id);
                 if (!del)
                 {
-                    TempData["error_msg"] = "Department Not Found";
-                    return RedirectToAction("index");
+                    result.Add("msg", "Department is Not Exist");
+                    result.Add("status", 404);
+                    return Json(result);
                 }
                 transaction.Commit();
+                result.Add("msg", "Department has been deleted Successfully!");
+                result.Add("status", 202);
+                return Json(result);
             }
             catch (Exception e)
             {
-                transaction.Rollback();
-                TempData["error_msg"] = e.Message;
+                result.Add("msg", e.Message);
+                result.Add("status", 400);
+                return Json(result);
             }
-            return RedirectToAction("Index");
+            
         }
     }
 

@@ -6,16 +6,24 @@
 
 @section Styles {
     <link rel="stylesheet" type="text/css" href="~/admin/app-assets/vendors/css/tables/datatable/datatables.min.css">
+    <link rel="stylesheet" type="text/css" href="~/admin/app-assets/vendors/css/extensions/sweetalert.css">
+}
+@if (ViewBag.CreateBtn is true)
+{
+    <a class="CreateBtn btn btn-info text-capitalize white my-2">
+        <i class="ft-file-plus"></i>@localizer["add_new"]
+    </a>
 }
 
-<a asp-action="Create" asp-controller="Department" class="btn btn-info text-capitalize white my-2">
-    <i class="ft-file-plus"></i>@localizer["add_new"]</a>
+    
 <table class="table data-table table-striped table-bordered zero-configuration text-center">
     <thead>
         <tr>
             <th>#</th>
-            <th>@localizer["name"]</th>
-            <th>@localizer["activate"]</th>
+            @foreach (var col in ViewBag.Columns)
+            {
+                <th>@localizer[col]</th>
+            }
             <th>@localizer["actions"]</th>
         </tr>
     </thead>
@@ -25,8 +33,10 @@
     <tfoot>
         <tr>
             <th>#</th>
-            <th>@localizer["name"]</th>
-            <th>@localizer["activate"]</th>
+            @foreach (var col in ViewBag.Columns)
+            {
+                <th>@localizer[col]</th>
+            }
             <th>@localizer["actions"]</th>
         </tr>
     </tfoot>
@@ -37,10 +47,13 @@
     <script src="~/admin/app-assets/vendors/js/tables/datatable/datatables.min.js" type="text/javascript"></script>
     <script src="~/admin/app-assets/vendors/js/tables/datatable/dataTables.buttons.min.js" type="text/javascript"></script>
     <script src="~/admin/app-assets/vendors/js/tables/datatable/dataTables.responsive.min.js" type="text/javascript"></script>
+
+    <script src="~/admin/app-assets/vendors/js/extensions/sweetalert.min.js" type="text/javascript"></script>
     <script>
         $(document).ready(function () {
-
-            $(".data-table").DataTable({
+            let localPath = location.pathname.replace('/', '');
+            $(".CreateBtn").attr("href", `${localPath}/Create`);
+            let table = $(".data-table").DataTable({
                 "processing": true, // for show progress bar  
                 "serverSide": true, // for process server side  
                 "filter": true, // this is for disable filter (search box)  
@@ -59,25 +72,38 @@
                         "autoWidth": true,
                         "title": "#",
                         "render": function (data, type, full, meta) {
-                            return meta.row +1
+                            return (meta.settings._iDisplayLength * table.page.info().page) + meta.row + 1
                         }
                     },
-                    { "data": "name", "name": "@localizer["name"]", "autoWidth": true, "orderable": false },
-                    { 
-                        "name": "@localizer["activate"]", "autoWidth": true,
-                        "render": function (data, type, full, meta) {
-                        return full.is_active
-                            ? '<span class="activate badge badge-success fw-bolder text-capitalize text-white">@localizer["isActive"]</span>'
-                            : '<span class="activate badge badge-danger fw-bolder text-capitalize text-white" >@localizer["inActive"]</span>'
-                        }
-                    },
+                    @foreach (var col in ViewBag.Columns)
                     {
-                        name: "@localizer["actions"]",
+                        if (col == "activate")
+                        {
+                            <text>
+                            {
+                                "name": "@localizer["activate"]", "orderable": false, "autoWidth": true,
+                                "render": function (data, type, full, meta) {
+                                return full.is_active
+                                    ? '<span class="activate badge badge-success fw-bolder text-capitalize text-white">@localizer["isActive"]</span>'
+                                    : '<span class="activate badge badge-danger fw-bolder text-capitalize text-white" >@localizer["inActive"]</span>'
+                                }
+                            },
+                            </text>
+                        }
+                        else
+                        {
+                            <text> { "data": "@col", "name": "@localizer[col]", "autoWidth": true, "orderable": false }, </text>
+                        }
+                    }   
+                    
+                    {
+                        name: "@localizer["actions"]", "autoWidth": false, orderable: false,
                         "render": function (data, type, full, meta) {
                             let html = "";
-                            html += `<a href="${location.pathname}/Edit?id=${full.id}" class="btn btn-info white mx-50" data-toggle="tooltip" data-placement="top" title="@localizer["edit"]"><i class="ft-edit"></i></a>`;
-                            html += `<a href="${location.pathname}/Activate?id=${full.id}" class="btn btn-warning white mx-50" data-toggle="tooltip" data-placement="top" title="@localizer["activate"]"><i class="ft-repeat"></i></a>`;
-                            html += `<a onclick="return confirm('Are you sure you want to delete IBooking Content?')" href="${location.pathname}/Delete?id=${full.id}" class="btn btn-danger white mx-50" data-toggle="tooltip" data-placement="top" title="@localizer["delete"]"><i class="ft-trash-2"></i></a>`;
+                            html += `<a href="${localPath}/Edit?id=${full.id}" class="btn btn-info white mx-50" data-toggle="tooltip" data-placement="top" title="@localizer["edit"]"><i class="ft-edit"></i></a>`;
+                            html += `<a href="${localPath}/Activate?id=${full.id}" class="btn btn-warning white mx-50" data-toggle="tooltip" data-placement="top" title="@localizer["activate"]"><i class="ft-repeat"></i></a>`;
+                            html += `<button type="button" class="confirm-delete btn btn-danger white mx-50" data-guid="${full.id}"><i class="ft-trash-2"></i></button>`;
+                            //html += `<a onclick="return confirm('Are you sure you want to delete IBooking Content?')" href="${localPath}/Delete?id=${full.id}" class="btn btn-danger white mx-50" data-toggle="tooltip" data-placement="top" title="@localizer["delete"]"><i class="ft-trash-2"></i></a>`;
                             return html;
                         }
                     },
@@ -94,7 +120,56 @@
                 ]
 
             });
-            
+
+            $(document).on('click', '.confirm-delete' , function () {
+                let guid = $(this).data("guid");
+		        swal({
+                    title: `Are you sure to delete this ${localPath}?`,
+		            text: "You will not be able to recover this imaginary file!",
+		            icon: "warning",
+		            showCancelButton: true,
+		            buttons: {
+                        cancel: {
+                            text: "No, cancel!",
+                            value: null,
+                            visible: true,
+                            className: "btn-warning",
+                            closeModal: false,
+                        },
+                        confirm: {
+                            text: "Yes, delete it!",
+                            value: true,
+                            visible: true,
+                            className: "btn-danger",
+                            closeModal: false
+                        }
+		            }
+		        }).then(isConfirm => {
+		            if (isConfirm) {
+                        $.ajax({
+                            method: "DELETE",
+                            url: `${localPath}/Delete?id=${guid}`,
+                            success: function(data){
+                                console.log(data);
+                                console.log(data.status);
+                                if (data.status == 202) {
+                                    swal("Deleted!", data.msg, "success");
+                                    table.ajax.reload();
+                                }else if(data.status == 404){
+                                    swal("Not Found!", data.msg, "error");
+                                }else{
+                                    swal("Cancelled", data.msg, "error");
+                                }
+                            }
+                        });
+		            } else {
+                        swal("Cancelled", `${localPath} has not been deleted. is safe!`, "warning");
+		            }
+		        });
+	        });
         });
+
+
+
     </script>
 }

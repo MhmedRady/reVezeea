@@ -30,6 +30,7 @@ public class CenterController : _Controller
     [HttpGet]
     public ActionResult<IEnumerable<CenterDTO>> Index()
     {
+        this.TableColumns(true,"name", "activate");
         return View();
     }
     [HttpGet]

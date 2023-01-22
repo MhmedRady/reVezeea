@@ -11,6 +11,22 @@ namespace vezeeta.admin.Controllers
     public class _Controller : Controller
     {
 
+        public void TableColumns(bool createUrl = true, params string[] columns)
+        {
+            if(columns.Length == 0)
+            {
+               string[] Columns = { "name", "activate" };
+               ViewBag.Columns = Columns;
+            }
+            else
+            {
+                ViewBag.Columns = columns;
+            }
+
+            ViewBag.CreateBtn = createUrl;
+            
+        }
+
         public ActionResult DataTable(IEnumerable<GenericNameDTOs>? ts)
         {
             try
@@ -28,34 +44,33 @@ namespace vezeeta.admin.Controllers
                 int recordsTotal = 0;
                 Debug.WriteLine(searchValue);
                 // Getting all Customer data    
-                var deptData = (ts);
-
+                var getData = (ts);
                 //Sorting    
                 if (!(string.IsNullOrEmpty(sortColumn) && string.IsNullOrEmpty(sortColumnDir)))
                 {
                     sortColumn = sortColumnDir == "#" ? "Id" : sortColumn;
-                    deptData = deptData.OrderBy(d => d.name + " " + sortColumnDir);
+                    getData = getData.OrderBy(d => d.name + " " + sortColumnDir);
                 }
 
                 //Search    
                 if (!string.IsNullOrEmpty(searchValue))
                 {
-                    deptData = deptData.Where(d =>
+                    getData = getData.Where(d =>
                     d.name_ar.StartsWith(searchValue, StringComparison.InvariantCultureIgnoreCase) ||
                     d.name_en.StartsWith(searchValue, StringComparison.InvariantCultureIgnoreCase));
                 }
 
                 //total number of rows count     
-                recordsTotal = deptData.Count();
+                recordsTotal = getData.Count();
                 //Paging     
-                var data = deptData.Skip(skip).Take(pageSize).ToList();
+                var data = getData.Skip(skip).Take(pageSize).ToList();
                 //Returning Json Data    
                 return Json(new 
                 {   draw = draw, 
                     recordsFiltered = recordsTotal, 
                     recordsTotal = recordsTotal, 
                     data = data,
-                    pageSize = pageSize
+                    pageSize = pageSize,
                 });
 
             }
