@@ -29,4 +29,12 @@
     <ProjectReference Include="..\vezeeta.BL\vezeeta.BL.csproj" />
 	</ItemGroup>
 
+
+  	<ItemGroup>
+  	  <AdditionalFiles Include="Views\Center\Create.cshtml" />
+  	  <AdditionalFiles Include="Views\Center\Edit.cshtml" />
+  	  <AdditionalFiles Include="Views\Center\Form.cshtml" />
+  	  <AdditionalFiles Include="Views\Center\Index.cshtml" />
+  	</ItemGroup>
+
 </Project>

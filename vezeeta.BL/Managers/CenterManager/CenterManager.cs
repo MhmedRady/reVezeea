@@ -18,7 +18,7 @@ public class CenterManager : ICenterManager
 
     public IEnumerable<CenterDTO> Index()
     {
-        throw new NotImplementedException();
+        return mapper.Map<ICollection<CenterDTO>>(_workRepo.CenterRepo.Index());
     }
 
     public CenterDTO? GetByID(Guid id)
@@ -62,6 +62,6 @@ public class CenterManager : ICenterManager
 
     public IEnumerable<CenterDTO>? LoadData()
     {
-        throw new NotImplementedException();
+        return mapper.Map<ICollection<CenterDTO>>(_workRepo.CenterRepo.LoadData());
     }
 }
