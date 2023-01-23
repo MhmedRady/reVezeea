@@ -102,17 +102,17 @@ public class DepartmentController : _Controller
             {
                 TempData[err.PropertyName] = err.ErrorMessage;
             }
-            return RedirectToAction("Edit", department);
+            return RedirectToAction("Edit", new {id = department.Id});
         }
         
         bool find = _unitOfManger.DepartmentManager.Index()
             .Where(dept => dept.Id != department.Id)
             .Any(dept => dept.name_en == department.name_en || dept.name_ar == department.name_ar);
 
-        if (find)
+        if (find is true)
         {
             TempData["error_msg"] = "Department already exist Before";
-            return RedirectToAction("Edit", department.Id);
+            return RedirectToAction("Edit", new {id = department.Id});
         }
 
         using (IDbContextTransaction transaction = vezeetaDB.Database.BeginTransaction())
