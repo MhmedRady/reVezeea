@@ -167,6 +167,7 @@ public class DepartmentController : _Controller
             }
             catch (Exception e)
             {
+                transaction.Rollback();
                 result.Add("msg", e.Message);
                 result.Add("status", 400);
                 return Json(result);
