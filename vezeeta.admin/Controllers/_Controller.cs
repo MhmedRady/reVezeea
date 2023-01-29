@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Diagnostics;
 using vezeeta.BL;
+using vezeeta.BL.DTOs.Center;
 using vezeeta.DBL;
 using vezeeta.DBL.db.GenericModels;
 using vezeeta.DBL.UnitOfWork;
@@ -11,11 +13,11 @@ namespace vezeeta.admin.Controllers
     public class _Controller : Controller
     {
 
-        public void TableColumns(bool createUrl = true, params string[] columns)
+        public  void TableColumns(bool createUrl = true, params string[] columns)
         {
             if(columns.Length == 0)
             {
-               string[] Columns = { "name", "activate" };
+               string[] Columns = { "name", "activate"};
                ViewBag.Columns = Columns;
             }
             else
@@ -27,6 +29,7 @@ namespace vezeeta.admin.Controllers
             
         }
 
+      
         public ActionResult DataTable(IEnumerable<GenericNameDTOs>? ts)
         {
             try

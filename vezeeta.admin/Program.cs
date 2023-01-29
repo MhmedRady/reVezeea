@@ -30,7 +30,8 @@ namespace vezeeta.admin
             #region SqlDbContext
             builder.Services.AddDbContext<VezeetaDB>(db =>
             {
-                db.UseSqlServer(builder.Configuration.GetConnectionString("vezeetaDb"));
+    
+        db.UseSqlServer(builder.Configuration.GetConnectionString("vezeetaDb"));
             });
             #endregion
 

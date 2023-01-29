@@ -11,5 +11,7 @@ public class AutoMapperProfile : Profile
         /*CreateMap<User, AdminDTO>().ReverseMap();*/
         CreateMap<Department, DepartmentDTO>().ReverseMap();
         CreateMap<Center, CenterDTO>().ReverseMap();
+        CreateMap<Center, CenterReadDto>().ReverseMap();
+
     }
 }

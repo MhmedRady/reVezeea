@@ -1,4 +1,12 @@
 @model vezeeta.BL.DTOs.Center.CenterDTO ;
+
+<div class="form-group col-12 mb-2">
+    <div class="col-5 mx-auto">
+        <img id="img" src="@(Helper.imageUrl(Model.logo))" class="img-thumbnail view-img" />
+        <input id="imgFile" type="file" class="form-control" asp-for="logo">
+    </div>
+</div>
+
 <div class="form-group col-md-6 mb-2">
     <lable class="form-lable fw-bold mb-50 d-block"> @localizer["name"] <span class="badge badge-danger">@localizer["ar-EG"]</span></lable>
     <input type="text" class="form-control" asp-for="name_ar" />
@@ -16,6 +24,43 @@
 </div>
 
 <div class="form-group col-md-6 mb-2">
+    <lable class="form-lable fw-bold mb-50 d-block">@localizer["email"]</lable>
+    <input type="email" class="form-control" asp-for="email" />
+    <span class="invalid-feedback d-block">
+        @TempData["email"]
+    </span>
+</div>
+
+<div class="form-group col-md-6 mb-2">
+    <lable class="form-lable fw-bold mb-50 d-block">@localizer["mobile"] </lable>
+    <input type="text" class="form-control" asp-for="mobile" />
+    <span class="invalid-feedback d-block">
+        @TempData["mobile"]
+    </span>
+</div>
+
+<div class="form-group col-md-6 mb-2">
+    <lable class="form-lable fw-bold mb-50 d-block">@localizer["phone"]</lable>
+    <input type="tel" class="form-control" asp-for="phone" />
+    <span class="invalid-feedback d-block">
+        @TempData["phone"]
+    </span>
+</div>
+
+<div class="form-group col-md-6 mb-2">
+    <label for="location1" class="form-lable fw-bold mb-50 d-block">@localizer["department_name"]</label>
+    <select class="custom-select form-control"  asp-for="DepartmentId">
+        <option value="">@localizer["department_name"]</option>
+        @foreach (var dept in ViewBag.departmentsName){
+            <option value="@dept.Id">@(Helper.getLnag() == "ar" ? dept.name_ar : dept.name_en)</option>
+        }      
+    </select>
+    <span class="invalid-feedback d-block">
+        @TempData["DepartmentId"]
+    </span>
+</div>
+
+<div class="form-group col-md-6 mb-2">
     <lable class="form-lable fw-bold mb-50 d-block"> Is Active </lable>
     <fieldset>
         <div class="float-left">
@@ -25,3 +70,21 @@
 </div>
 
 
+ <script>
+        let img = document.getElementById("img");
+        let imgFile = document.getElementById("imgFile");
+        imgFile.onchange = function (e) {
+            console.log(e);
+            let reader = new FileReader();
+        console.log(reader);
+            let file = e.target.files[0];
+        console.log(file);
+            reader.onload = function () {
+                img.src = reader.result;
+                console.log(img.src);
+                console.log(reader.result);
+            }
+            reader.readAsDataURL(file);//?????????
+       
+        }
+    </script>

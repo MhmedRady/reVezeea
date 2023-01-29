@@ -15,6 +15,6 @@ public interface IGenericRepo<T> where T : class
     public void Update(T entity);
     public void Delete(T entity);
     public void SaveChanges();
-    public IEnumerable<T>? LoadData();
+    public  IEnumerable<T>? LoadData();
     public IEnumerable<T>? _Any();
 }

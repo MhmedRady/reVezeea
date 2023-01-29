@@ -167,6 +167,7 @@ public class DepartmentController : _Controller
             }
             catch (Exception e)
             {
+                transaction.Rollback();
                 result.Add("msg", e.Message);
                 result.Add("status", 400);
                 return Json(result);
@@ -177,35 +178,40 @@ public class DepartmentController : _Controller
 
     public ActionResult Activate(Guid id)
     {
+        var result = new Dictionary<string, object>();
+
         DepartmentDTO? department = _unitOfManger.DepartmentManager.GetByID(id);
 
         if (department is null)
         {
             TempData["error_msg"] = "Department Not Found";
-            return RedirectToAction("index");
+            result.Add("msg", "Department is not found");
+            result.Add("status", 404);
+            return Json(result);
         }
 
         using (IDbContextTransaction transaction = vezeetaDB.Database.BeginTransaction())
         {
             try
             {
-                bool del = this._unitOfManger.DepartmentManager.Activate(id);
-                if (!del)
-                {
-                    TempData["error_msg"] = "Department Not Found";
-                    return RedirectToAction("index");
-                }
+                bool active_found = this._unitOfManger.DepartmentManager.Activate(id);
                 transaction.Commit();
+                result.Add("msg", "Active of center has Changed Successfully!");
+                result.Add("status", 202);
+                return Json(result);
             }
             catch (Exception e)
             {
                 transaction.Rollback();
                 TempData["error_msg"] = e.Message;
+                result.Add("msg", "Active of department has Changed Successfully!");
+                result.Add("status", 202);
+                return Json(result);
             }
-            return RedirectToAction("Index");
+           
         }
     }
-    
+
     public ActionResult LoadData()
     {
         var iEData = _unitOfManger.DepartmentManager.LoadData();

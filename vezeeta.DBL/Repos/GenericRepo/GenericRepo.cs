@@ -48,7 +48,7 @@ public class GenericRepo<T> : IGenericRepo<T> where T : class
         this.vezeetaDB.SaveChanges();
     }
     
-    public IEnumerable<T>? LoadData()
+    public virtual IEnumerable<T>? LoadData()
     {
         return (from repo in this.Index()
                 select repo);
@@ -58,4 +58,5 @@ public class GenericRepo<T> : IGenericRepo<T> where T : class
     {
         return this.vezeetaDB.Set<T>();
     }
+
 }

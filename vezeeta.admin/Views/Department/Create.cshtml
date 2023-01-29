@@ -20,7 +20,8 @@
 }
 
 <form class="form row" asp-controller="Department" asp-action="Store"  method="post">
-    @Html.Partial("Form", model:Model)
+   @* @Html.Partial("Form", model:Model)*@
+        <partial name="Form" />
     <div class="form-group col-md-6 mb-2">
         <fieldset>
             <div class="float-left">

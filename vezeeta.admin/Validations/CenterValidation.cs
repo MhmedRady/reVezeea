@@ -19,6 +19,17 @@ public class CenterValidation : AbstractValidator<CenterDTO>
             .NotNull()
             .WithMessage("Department Arabic Name Can't Be Empty")
             .MinimumLength(2).WithMessage("Department Arabic Name length Can't Be less than 2 characters");
+        RuleFor(c => c.email)
+            .NotNull().WithMessage("Email can't be empty")
+            .EmailAddress().WithMessage("Email not valid");
+        RuleFor(c => c.phone)
+             .NotNull().WithMessage("Phone can't be empty")
+             .MaximumLength(8).WithMessage("Phone must consist of 8 number");
+        RuleFor(c => c.mobile)
+            .NotNull().WithMessage("Phone can't be empty")
+             .MaximumLength(11).WithMessage("Mobile must consist of 11 number");
+             //.Matches("/^(01)(0|1|2|5)\\d[0-9]{8}$/").WithMessage("Mobile must start with 01");
+
 
         /*RuleFor(x => x.logo).Must(x => x.Equals("image/jpeg") || x.Equals("image/jpg") || x.Equals("image/png"))
                 .WithMessage("File type is larger than allowed");*/
