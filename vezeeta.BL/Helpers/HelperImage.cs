@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Http;
 
 namespace vezeeta.BL;
 
-public partial class HelperImage
+public partial class Helper
 {
     public static string? uploadeFile(IFormFile img, string? dirName)
     {
