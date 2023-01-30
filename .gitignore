@@ -2,7 +2,7 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
-.vs/
+*/.vs/
 *.vs
 *.idea
 
@@ -14,4 +14,4 @@ bin*
 *.vscode/
 appsettings*
 /adminPanel/.vscode
-uploaded/*
+*/wwwroot/images/uploaded/*
