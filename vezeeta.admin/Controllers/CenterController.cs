@@ -62,14 +62,10 @@ public class CenterController : _Controller
             return RedirectToAction("Create");
         }
 
-        if (logo == null)
-        {
-            center.logo = @"/images/DefaultImage.jpeg";
-        }
-        else
+        if (logo != null)
         {
             string? checkImageExt = Helper.checkImageExt(logo);
-            if(checkImageExt is  not null)
+            if(checkImageExt is not null)
             {
                 TempData["error_msg"] = checkImageExt;
                 return RedirectToAction("Create");
@@ -143,6 +139,7 @@ public class CenterController : _Controller
             }
             center.logo = Helper.uploadImage(logo, "center");
         }
+        
         using (IDbContextTransaction transaction = vezeetaDB.Database.BeginTransaction())
         {
             try
