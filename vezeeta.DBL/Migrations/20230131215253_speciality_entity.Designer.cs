@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using vezeeta.DBL;
 
@@ -11,9 +12,11 @@ using vezeeta.DBL;
 namespace vezeeta.DBL.Migrations
 {
     [DbContext(typeof(VezeetaDB))]
-    partial class VezeetaDBModelSnapshot : ModelSnapshot
+    [Migration("20230131215253_speciality_entity")]
+    partial class specialityentity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

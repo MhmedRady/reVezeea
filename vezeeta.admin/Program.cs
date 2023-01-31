@@ -14,6 +14,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using vezeeta.BL.Managers.CenterManger;
 using vezeeta.DBL.Repos.CenterRepo;
 using vezeeta.DBL.UnitOfWork;
+using vezeeta.DBL.Repos.SpecialityRepo;
 
 namespace vezeeta.admin
 {
@@ -84,6 +85,7 @@ namespace vezeeta.admin
             builder.Services.AddScoped<IUserRepo, UserRepo>();
             builder.Services.AddScoped<IDepartmentRepo, DepartmentRepo>();
             builder.Services.AddScoped<ICenterRepo, CenterRepo>();
+            builder.Services.AddScoped<ISpecialityRepo, SpecialityRepo>();
             #endregion
 
             #region Manager

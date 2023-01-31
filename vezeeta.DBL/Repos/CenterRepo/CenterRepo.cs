@@ -11,9 +11,9 @@ public class CenterRepo : GenericRepo<Center>, ICenterRepo
         _vezeetaDb = _vezeetaDB;
     }
 
-    public bool Find(Center center, bool chickName = true)
+    public bool Find(Center center, bool checkName = true)
     {
-        if(chickName is true)
+        if(checkName is true)
         {
             bool center_found = _Any().Any(c => c.name_ar == center.name_ar || c.name_en == center.name_en || c.email == center.email || c.mobile == center.email || c.phone == center.phone);
             return center_found;

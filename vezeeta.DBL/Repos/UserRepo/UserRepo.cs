@@ -20,9 +20,9 @@ public class UserRepo : GenericRepo<User>, IUserRepo
     {
         return _Any().Where(a=>a.is_active == true && a.Id == user.Id).Any();
     }
-    public bool Find(User user, bool chickName = true)
+    public bool Find(User user, bool checkName = true)
     {
-        if (chickName is true)
+        if (checkName is true)
         {
             return _Any().Any(d => d.username == user.username);
         }

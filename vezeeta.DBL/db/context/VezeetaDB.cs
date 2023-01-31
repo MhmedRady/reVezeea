@@ -6,13 +6,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using vezeeta.DBL.db;
+using vezeeta.DBL.db.Models;
 
 namespace vezeeta.DBL;
 public class VezeetaDB : DbContext
 {
+    #region tables
     public virtual DbSet<User> users { get; set; } = null!;
     public virtual DbSet<Department> departments { get; set; } = null!;
     public virtual DbSet<Center> centers { get; set; } = null!;
+    public virtual DbSet<Speciality> specialities { get; set; } = null!;
+    public virtual DbSet<CenterSpeciality> centersSpecialities { get; set; } = null!;
+    #endregion
     public VezeetaDB(DbContextOptions<VezeetaDB> dbContextOptions) : base(dbContextOptions) { }
     protected virtual void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -41,6 +46,18 @@ public class VezeetaDB : DbContext
                 email = "center1@asp.net",
             }
         );*/
+
+        // Speciality
+        modelBuilder.Entity<Speciality>().ToTable("specialities").HasKey(s => s.Id);
+
+        // CenterSpeciality
+        modelBuilder.Entity<CenterSpeciality>().HasKey(m => new { m.SpecialityId, m.CenterId });
+        modelBuilder.Entity<Speciality>().HasOne(x => x.MainSpeciality).WithOne().HasForeignKey<Speciality>(x => x.MainSpecialityId);
+        modelBuilder.Entity<Speciality>().HasMany(c => c.Centers).WithMany(s => s.Specialities);
+        modelBuilder.Entity<Center>().ToTable("centers").HasKey(c => c.Id);
+        modelBuilder.Entity<Department>().HasMany(d => d.Centers).WithOne(c => c.Department).HasForeignKey(c => c.DepartmentId);
+        modelBuilder.Entity<User>().HasMany(d => d.Centers).WithOne(c => c.User).HasForeignKey(c => c.UserId);
+
 
     }
 }

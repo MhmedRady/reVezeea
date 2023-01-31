@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using vezeeta.DBL.db.GenericModels;
 using vezeeta.DBL.db;
 using Microsoft.EntityFrameworkCore;
+using vezeeta.DBL.db.Models;
 
 namespace vezeeta.DBL
 {
@@ -31,8 +32,11 @@ namespace vezeeta.DBL
         public float? amount { get; set; }
         public Department? Department { get; set; }
         public User? User { get; set; }
-        public Center() { 
+        public virtual ICollection<Speciality> Specialities { get; set; }
 
+        public Center()
+        {
+            Specialities = new HashSet<Speciality>();
         }
     }
 }

@@ -11,6 +11,6 @@ namespace vezeeta
     {
         public virtual void ActivateUser(User user) { }
         public bool IsActive(User user);
-        public bool Find(User user, bool chickName = true);
+        public bool Find(User user, bool checkName = true);
     }
 }

@@ -9,5 +9,5 @@ namespace vezeeta.DBL;
 
 public interface IDepartmentRepo : IGenericRepo<Department>
 {
-    public bool Find(Department department, bool chickName = true);
+    public bool Find(Department department, bool checkName = true);
 }

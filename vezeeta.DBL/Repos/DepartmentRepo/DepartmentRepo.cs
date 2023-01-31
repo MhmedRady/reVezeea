@@ -16,9 +16,9 @@ public class DepartmentRepo : GenericRepo<Department>, IDepartmentRepo
     {
         vezeetaDB = _vezeetaDB;
     }
-    public bool Find(Department department, bool chickName = true)
+    public bool Find(Department department, bool checkName = true)
     {
-        if (chickName is true)
+        if (checkName is true)
         {
             bool check = _Any().Any(d => d.name_ar == department.name_ar || d.name_en == department.name_en);
             return check;
