@@ -7,12 +7,16 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\vezeeta.DBL\vezeeta.DBL.csproj" />
+    <Compile Remove="DTOs\Doctor\**" />
+    <Compile Remove="DTOs\User\**" />
+    <EmbeddedResource Remove="DTOs\Doctor\**" />
+    <EmbeddedResource Remove="DTOs\User\**" />
+    <None Remove="DTOs\Doctor\**" />
+    <None Remove="DTOs\User\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="DTOs\Doctor\" />
-    <Folder Include="DTOs\User\" />
+    <ProjectReference Include="..\vezeeta.DBL\vezeeta.DBL.csproj" />
   </ItemGroup>
 
   <ItemGroup>

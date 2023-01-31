@@ -15,6 +15,7 @@ using vezeeta.BL.Managers.CenterManger;
 using vezeeta.DBL.Repos.CenterRepo;
 using vezeeta.DBL.UnitOfWork;
 using vezeeta.DBL.Repos.SpecialityRepo;
+using vezeeta.BL.Managers.SpecialityManager;
 
 namespace vezeeta.admin
 {
@@ -92,6 +93,7 @@ namespace vezeeta.admin
             builder.Services.AddScoped<IAdminManager, AdminManager>();
             builder.Services.AddScoped<IDepartmentManager, DepartmentManager>();
             builder.Services.AddScoped<ICenterManager, CenterManager>();
+            //builder.Services.AddScoped<ISpecialityRepo, SpecialityManager>();
             #endregion
 
             #region UnitOfWork

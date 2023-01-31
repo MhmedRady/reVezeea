@@ -12,7 +12,7 @@ namespace vezeeta.DBL.db.Models
     {
         public string logo { get; set; }
         public Guid? MainSpecialityId { get; set; }
-        public virtual Speciality MainSpeciality { get; set; }
+        public virtual Speciality? MainSpeciality { get; set; }
         public virtual ICollection<Center> Centers { get; set; }
 
         public Speciality()

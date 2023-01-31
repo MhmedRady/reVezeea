@@ -12,7 +12,7 @@ using vezeeta.DBL;
 namespace vezeeta.DBL.Migrations
 {
     [DbContext(typeof(VezeetaDB))]
-    [Migration("20230131215253_speciality_entity")]
+    [Migration("20230131221355_speciality_entity")]
     partial class specialityentity
     {
         /// <inheritdoc />
