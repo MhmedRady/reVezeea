@@ -4,18 +4,22 @@ namespace vezeeta.BL;
 
 public partial class Helper
 {
-    public static string? uploadeFile(IFormFile img, string? dirName)
+    public static string? checkImageExt(IFormFile img)
+    {
+        var format_ext_image = Path.GetExtension(img.FileName);
+        string[] format_images = new string[] { ".jpg", ".jpeg", ".png" };
+        if (!format_images.Contains(format_ext_image.ToLower()))
+        {
+            return $"Only these images file types are accepted : [ {string.Join(" ", format_images)} ]";
+        }
+        return null;
+    }
+    public static string? uploadImage(IFormFile img, string? dirName)
     {
         Random rand = new Random();
+        var format_ext_image = Path.GetExtension(img.FileName);
         var r = rand.Next(1000, int.Parse(DateTime.Now.ToString("yyyyyMMmmss"))).ToString();
-        var format_ext_image = Path.GetExtension(img.FileName).ToLower();
-        string[] format_images = new string[] { ".jpg", ".jpeg", ".png" };
-        if (!format_images.Contains(format_ext_image))
-        {
-            return "there is problem in extention of image";
-        }
-            string uniqueImge = r + "." + img.FileName.Split(".")[1];
-       
+        string uniqueImge = r + "." + img.FileName.Split(format_ext_image)[1];
         
         if (!System.IO.Directory.Exists(@$".\wwwroot\images\uploaded\{dirName}"))
         {
@@ -31,7 +35,7 @@ public partial class Helper
     public static string? imageUrl(string? image)
     {
         if (image == null)
-            return @"/images/DefaultImage.png";
+            return @"/images/DefaultImage.jpeg";
         if (image.StartsWith("http") || image.StartsWith("https"))
         {
             return image;

@@ -62,24 +62,25 @@ public class CenterController : _Controller
             return RedirectToAction("Create");
         }
 
+        if (logo == null)
+        {
+            center.logo = @"/images/DefaultImage.jpeg";
+        }
+        else
+        {
+            string? checkImageExt = Helper.checkImageExt(logo);
+            if(checkImageExt is  not null)
+            {
+                TempData["error_msg"] = checkImageExt;
+                return RedirectToAction("Create");
+            }
+            center.logo = Helper.uploadImage(logo, "center");
+        }
+        
         using (IDbContextTransaction transaction = vezeetaDB.Database.BeginTransaction())
         {
             try
             {
-                if (logo == null)
-                {
-                    center.logo = @"/images/DefaultImage.jpeg";
-                }
-                else
-                {
-                    if(!Helper.uploadeFile(logo, "center").Contains("."))
-                    {
-                        TempData["error_msg"] = "there is problem in format of image";
-                        return RedirectToAction("Create");
-                    }
-                    center.logo = Helper.uploadeFile(logo, "center");
-
-                }
                 _unitOfManger.CenterManager.Add(center);
                 transaction.Commit();
                 TempData["success_msg"] = "center Created Successfully!";
@@ -119,7 +120,7 @@ public class CenterController : _Controller
             {
                 TempData[err.PropertyName] = err.ErrorMessage;
             }
-            return RedirectToAction("Edit", center);
+            return RedirectToAction("Edit", new {id = center.Id});
         }
         
         bool find = _unitOfManger.CenterManager.Index()
@@ -129,28 +130,23 @@ public class CenterController : _Controller
         if (find)
         {
             TempData["error_msg"] = "center already exist Before";
-            return RedirectToAction("Edit", center.Id);
+            return RedirectToAction("Edit", new {id = center.Id});
         }
-
+        
+        if (logo != null)
+        {
+            string? checkImageExt = Helper.checkImageExt(logo);
+            if(checkImageExt is  not null)
+            {
+                TempData["error_msg"] = checkImageExt;
+                return RedirectToAction("Edit", new {id = center.Id});
+            }
+            center.logo = Helper.uploadImage(logo, "center");
+        }
         using (IDbContextTransaction transaction = vezeetaDB.Database.BeginTransaction())
         {
             try
             {
-                if (logo == null)
-                {
-                    center.logo = @"/images/DefaultImage.jpeg";
-                }
-                else
-                {
-                    if (!Helper.uploadeFile(logo, "center").Contains("."))
-                    {
-                        TempData["error_msg"] = "there is problem in format of image";
-                        return RedirectToAction("Edit", center);
-                    }
-                    center.logo = Helper.uploadeFile(logo, "center");
-
-                }
-               
                 var update = _unitOfManger.CenterManager.Update(center);
                 if (!update)
                 {
@@ -179,7 +175,6 @@ public class CenterController : _Controller
         if (center is null)
         {
             TempData["error_msg"] = "Center Not Found";
-            //return RedirectToAction("index");
             result.Add("msg", "Center is not found");
             result.Add("status", 404);
             return Json(result);
@@ -193,7 +188,6 @@ public class CenterController : _Controller
                 if (!del)
                 {
                     TempData["error_msg"] = "Center Not Found";
-                    //  return RedirectToAction("index");
                     result.Add("msg", "Center is not found");
                     result.Add("status", 404);
                     return Json(result);
@@ -206,7 +200,6 @@ public class CenterController : _Controller
             catch (Exception e)
             {
                 transaction.Rollback();
-                //TempData["error_msg"] = e.Message;
                 result.Add("msg", e.Message);
                 result.Add("status", 400);
                 return Json(result);
@@ -223,7 +216,6 @@ public class CenterController : _Controller
         if (center is null)
         {
             TempData["error_msg"] = "Center Not Found";
-            //return RedirectToAction("index");
             result.Add("msg", "Center is not found");
             result.Add("status", 404);
             return Json(result);
@@ -237,7 +229,6 @@ public class CenterController : _Controller
                 if (!active_found)
                 {
                     TempData["error_msg"] = "Center Not Found";
-                    //return RedirectToAction("index");
                     result.Add("msg", "Center is not found");
                     result.Add("status", 404);
                     return Json(result);
@@ -250,22 +241,16 @@ public class CenterController : _Controller
             catch (Exception e)
             {
                 transaction.Rollback();
-               // TempData["error_msg"] = e.Message;
                 result.Add("msg", e.Message);
                 result.Add("status", 400);
                 return Json(result);
             }
-            //return RedirectToAction("Index");
         }
     }
     
     public ActionResult LoadData()
     {
-
-        var iEData = _unitOfManger.CenterManager.LoadData();
-       var x= iEData.FirstOrDefault();
-      // var y = x.Department;
-      //  Console.WriteLine(y);
-        return this.DataTable(iEData);
+       var iEData = _unitOfManger.CenterManager.LoadData();
+       return Json(iEData);
     }
 }
