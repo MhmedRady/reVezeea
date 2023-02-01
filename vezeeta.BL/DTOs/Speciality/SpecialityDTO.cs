@@ -8,5 +8,6 @@ namespace vezeeta.BL.DTOs.Speciality
 {
     public class SpecialityDTO : GenericNameDTOs
     {
+        public string logo { get; set; }
     }
 }
