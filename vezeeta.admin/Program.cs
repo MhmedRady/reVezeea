@@ -57,7 +57,7 @@ namespace vezeeta.admin
             builder.Services.AddAutoMapper(typeof(AutoMapperProfile).Assembly);
             #endregion
 
-            #region language
+            #region Language
             builder.Services.AddLocalization();
             builder.Services.AddSingleton<IStringLocalizerFactory, JsonStringLocalizerFactory>();
             builder.Services.AddMvc()
@@ -93,7 +93,7 @@ namespace vezeeta.admin
             builder.Services.AddScoped<IAdminManager, AdminManager>();
             builder.Services.AddScoped<IDepartmentManager, DepartmentManager>();
             builder.Services.AddScoped<ICenterManager, CenterManager>();
-            //builder.Services.AddScoped<ISpecialityRepo, SpecialityManager>();
+            builder.Services.AddScoped<ISpecialityManager, SpecialityManager>();
             #endregion
 
             #region UnitOfWork
