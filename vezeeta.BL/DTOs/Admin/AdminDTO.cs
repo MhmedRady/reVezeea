@@ -9,19 +9,10 @@ using System.Threading.Tasks;
 
 namespace vezeeta.BL
 {
-    public class AdminDTO
+    public class AdminDTO : GenericUserDTOs
     {
-        public Guid Id { get; set; }
-        public string? userName { get; set; }
-        public string? email { get; set; }
-        public string? password { get; set; }
-        public string? mobile { get; set; }
-        public string? profile_image { get; set; }
-        [DefaultValue(false)]
-        public bool is_admin { get; set; } = true;
-        public bool is_active { get; set; }
-        public DateTime? created_at { get; set; }
-        public DateTime? updated_at { get; set; }
+        [DefaultValue(true)]
+        public bool is_admin { get => true; }
 
         /*public string? firstName { get; set; }
         public string? middleName { get; set; }

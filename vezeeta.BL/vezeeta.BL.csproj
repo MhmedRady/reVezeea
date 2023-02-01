@@ -7,22 +7,19 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="DTOs\Doctor\**" />
-    <Compile Remove="DTOs\User\**" />
-    <EmbeddedResource Remove="DTOs\Doctor\**" />
-    <EmbeddedResource Remove="DTOs\User\**" />
-    <None Remove="DTOs\Doctor\**" />
-    <None Remove="DTOs\User\**" />
+    <ProjectReference Include="..\vezeeta.DBL\vezeeta.DBL.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\vezeeta.DBL\vezeeta.DBL.csproj" />
+    <Folder Include="DTOs\Doctor\" />
+    <Folder Include="DTOs\Patient\" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="12.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="5.0.17" />
     <PackageReference Include="Microsoft.Extensions.Localization" Version="7.0.1" />
+    <PackageReference Include="System.Text.Json" Version="7.0.1" />
   </ItemGroup>
 
 </Project>

@@ -135,6 +135,10 @@
     height: 250px;
 }
 
+.clickable{
+    cursor: pointer !important;
+}
+
 .table-img {
     background-color: #ccc;
 }

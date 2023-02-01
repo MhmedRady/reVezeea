@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace vezeeta.BL.DTOs.Center
 {
+    
     public class CenterReadDto : GenericNameDTOs
     {
         public string? email { get; set; }

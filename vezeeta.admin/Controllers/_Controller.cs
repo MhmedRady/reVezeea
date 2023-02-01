@@ -40,34 +40,31 @@ namespace vezeeta.admin.Controllers
                 var sortColumn = Request.Form["columns[" + Request.Form["order[0][column]"].FirstOrDefault() + "][name]"].FirstOrDefault();
                 var sortColumnDir = Request.Form["order[0][dir]"].FirstOrDefault();
                 var searchValue = Request.Form["search[value]"].FirstOrDefault();
-
-                //Paging Size (10,20,50,100)    
+                //Paging Size
                 int pageSize = length != null ? Convert.ToInt32(length) : 0;
                 int skip = start != null ? Convert.ToInt32(start) : 0;
                 int recordsTotal = 0;
                 Debug.WriteLine(searchValue);
-                // Getting all Customer data    
+                //Getting all Custom data
                 var getData = (ts);
-                //Sorting    
+                //Sorting
                 if (!(string.IsNullOrEmpty(sortColumn) && string.IsNullOrEmpty(sortColumnDir)))
                 {
                     sortColumn = sortColumnDir == "#" ? "Id" : sortColumn;
                     getData = getData.OrderBy(d => d.name + " " + sortColumnDir);
                 }
-
-                //Search    
+                //Search
                 if (!string.IsNullOrEmpty(searchValue))
                 {
                     getData = getData.Where(d =>
                     d.name_ar.StartsWith(searchValue, StringComparison.InvariantCultureIgnoreCase) ||
                     d.name_en.StartsWith(searchValue, StringComparison.InvariantCultureIgnoreCase));
                 }
-
-                //total number of rows count     
+                //total
                 recordsTotal = getData.Count();
-                //Paging     
+                //Paging
                 var data = getData.Skip(skip).Take(pageSize).ToList();
-                //Returning Json Data    
+                //Returning
                 return Json(new 
                 {   draw = draw, 
                     recordsFiltered = recordsTotal, 
@@ -75,9 +72,8 @@ namespace vezeeta.admin.Controllers
                     data = data,
                     pageSize = pageSize,
                 });
-
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 throw;
             }

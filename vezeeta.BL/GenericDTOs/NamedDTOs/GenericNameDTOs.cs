@@ -1,13 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Text.Json.Serialization;
+using vezeeta.BL.DTOs.Center;
+using vezeeta.BL.DTOs.Doctor;
+using vezeeta.BL.DTOs.User;
 
 
 namespace vezeeta.BL
 {
+    [JsonDerivedType(typeof(DepartmentDTO))]
+    [JsonDerivedType(typeof(CenterReadDto))]
+    
     public class GenericNameDTOs: IGenericNameDTOs
     {
         public Guid Id { get; set; }
