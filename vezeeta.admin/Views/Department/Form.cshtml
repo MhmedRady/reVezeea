@@ -20,7 +20,7 @@
     <lable class="form-lable fw-bold mb-50 d-block"> Is Active </lable>
     <fieldset>
         <div class="float-left">
-            <input type="checkbox" class="switch" id="switch1" checked="checked" asp-for="is_active" />
+            @Html.CheckBoxFor(model => model.is_active, new { id = "switch1", @checked = Model.is_active ? "checked" : "", @class = "switch"})
         </div>
     </fieldset>
 </div>

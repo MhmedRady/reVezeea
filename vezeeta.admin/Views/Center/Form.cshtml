@@ -2,14 +2,14 @@
 
 <div class="form-group col-12 mb-2">
     <div class="col-5 mx-auto">
-        <img id="img" src="@(Helper.imageUrl(Model.logo))" class="img-thumbnail view-img" />
-        <input id="imgFile" type="file" class="form-control" asp-for="logo">
+        <img id="img" src="@(Helper.imageUrl(Model.logo))" class="img-thumbnail view-img clickable" />
+        <input id="imgFile" type="file" class="form-control hidden" asp-for="logo">
     </div>
 </div>
 
 <div class="form-group col-md-6 mb-2">
     <lable class="form-lable fw-bold mb-50 d-block"> @localizer["name"] <span class="badge badge-danger">@localizer["ar-EG"]</span></lable>
-    <input type="text" class="form-control" asp-for="name_ar" />
+    @Html.TextBoxFor(m=>m.name_ar, new {@class = "form-control"})
     <span class="invalid-feedback d-block">
         @TempData["name_ar"]
     </span>
@@ -17,7 +17,7 @@
 
 <div class="form-group col-md-6 mb-2">
     <lable class="form-lable fw-bold mb-50 d-block">@localizer["name"] <span class="badge badge-danger">@localizer["en-US"]</span></lable>
-    <input type="text" class="form-control" asp-for="name_en" />
+    @Html.TextBoxFor(m=>m.name_en, new {@class = "form-control"})
     <span class="invalid-feedback d-block">
         @TempData["name_en"]
     </span>
@@ -25,7 +25,7 @@
 
 <div class="form-group col-md-6 mb-2">
     <lable class="form-lable fw-bold mb-50 d-block">@localizer["email"]</lable>
-    <input type="email" class="form-control" asp-for="email" />
+    @Html.TextBoxFor(m=>m.email, new {@class = "form-control"})
     <span class="invalid-feedback d-block">
         @TempData["email"]
     </span>
@@ -33,7 +33,7 @@
 
 <div class="form-group col-md-6 mb-2">
     <lable class="form-lable fw-bold mb-50 d-block">@localizer["mobile"] </lable>
-    <input type="text" class="form-control" asp-for="mobile" />
+    @Html.TextBoxFor(m=>m.mobile, new {@class = "form-control"})
     <span class="invalid-feedback d-block">
         @TempData["mobile"]
     </span>
@@ -41,7 +41,7 @@
 
 <div class="form-group col-md-6 mb-2">
     <lable class="form-lable fw-bold mb-50 d-block">@localizer["phone"]</lable>
-    <input type="tel" class="form-control" asp-for="phone" />
+    @Html.TextBoxFor(m=>m.phone, new {@class = "form-control"})
     <span class="invalid-feedback d-block">
         @TempData["phone"]
     </span>
@@ -52,7 +52,7 @@
     <select class="custom-select form-control"  asp-for="DepartmentId">
         <option value="">@localizer["department_name"]</option>
         @foreach (var dept in ViewBag.departmentsName){
-            <option value="@dept.Id">@(Helper.getLnag() == "ar" ? dept.name_ar : dept.name_en)</option>
+            <option value="@dept.Id">@(dept.name)</option>
         }      
     </select>
     <span class="invalid-feedback d-block">
@@ -64,25 +64,22 @@
     <lable class="form-lable fw-bold mb-50 d-block"> Is Active </lable>
     <fieldset>
         <div class="float-left">
-            <input type="checkbox" class="switch" id="switch1" checked="checked" asp-for="is_active" />
+            @Html.CheckBoxFor(model => model.is_active, new { id = "switch1", @checked = Model.is_active ? "checked" : "", @class = "switch"})
         </div>
     </fieldset>
 </div>
 
-
- <script>
+<script>
         let img = document.getElementById("img");
         let imgFile = document.getElementById("imgFile");
+        img.onclick = function() {
+          imgFile.click();
+        }
         imgFile.onchange = function (e) {
-            console.log(e);
             let reader = new FileReader();
-        console.log(reader);
             let file = e.target.files[0];
-        console.log(file);
             reader.onload = function () {
                 img.src = reader.result;
-                console.log(img.src);
-                console.log(reader.result);
             }
             reader.readAsDataURL(file);//?????????
        

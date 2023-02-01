@@ -22,6 +22,7 @@ namespace vezeeta.admin.Controllers
         }
         public IActionResult Index()
         {
+            List<AdminDTO>? adminDtos= _unitOfManger.AdminManager.Index();
             return View();
         }
 

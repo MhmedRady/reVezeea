@@ -248,6 +248,7 @@ public class CenterController : _Controller
     public ActionResult LoadData()
     {
        var iEData = _unitOfManger.CenterManager.LoadData();
-       return Json(iEData);
+       var _center = this.DataTable(iEData);
+       return _center;
     }
 }
