@@ -35,6 +35,10 @@
   	  <AdditionalFiles Include="Views\Center\Edit.cshtml" />
   	  <AdditionalFiles Include="Views\Center\Form.cshtml" />
   	  <AdditionalFiles Include="Views\Center\Index.cshtml" />
+  	  <AdditionalFiles Include="Views\Speciality\Create.cshtml" />
+  	  <AdditionalFiles Include="Views\Speciality\Edit.cshtml" />
+  	  <AdditionalFiles Include="Views\Speciality\Form.cshtml" />
+  	  <AdditionalFiles Include="Views\Speciality\Index.cshtml" />
   	</ItemGroup>
 
 </Project>

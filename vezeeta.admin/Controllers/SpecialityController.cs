@@ -87,5 +87,11 @@ namespace vezeeta.admin.Controllers
             //}
             return RedirectToAction("Index");
         }
+
+        public ActionResult Update()
+        {
+            return Content("update");
+        }
+        
     }
 }
