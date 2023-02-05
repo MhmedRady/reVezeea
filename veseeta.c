@@ -42,9 +42,13 @@ users
 }
 
 /** ADDRESS **/
+countries
+{
+	Id, name_ar, name_en, locale, currency, Created_at?, updated_at?
+}
 states 
 {
-	Id, name_ar, name_en, 
+	Id, CountryId, name_ar, name_en, 
 }
 
 cities 
