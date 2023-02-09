@@ -1,20 +1,21 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './modules/auth/components/login/login.component';
-import { RegisterComponent } from './modules/auth/components/components/register/register.component';
-import { FooterComponent } from './modules/shared/components/footer/footer.component';
-import { NavbarComponent } from './modules/shared/components/navbar/navbar.component';
+import { ContentLayoutComponent } from './layout/content-layout/content-layout.component';
+import { CoreLayoutComponent } from './layout/core-layout/core-layout.component';
+import { FooterComponent } from './layout/footer/footer.component';
+import { NavbarComponent } from './layout/navbar/navbar.component';
+import { SpinnerComponent } from './shared/components/spinner/spinner.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
-    RegisterComponent,
+    ContentLayoutComponent,
+    CoreLayoutComponent,
     FooterComponent,
-    NavbarComponent
+    NavbarComponent,
+    SpinnerComponent,
   ],
   imports: [
     BrowserModule,
