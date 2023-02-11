@@ -7,6 +7,7 @@ import { CoreLayoutComponent } from './layout/core-layout/core-layout.component'
 import { FooterComponent } from './layout/footer/footer.component';
 import { NavbarComponent } from './layout/navbar/navbar.component';
 import { SpinnerComponent } from './shared/components/spinner/spinner.component';
+import {PagesModule} from "./module/pages.module";
 
 @NgModule({
   declarations: [
@@ -18,8 +19,9 @@ import { SpinnerComponent } from './shared/components/spinner/spinner.component'
     SpinnerComponent,
   ],
   imports: [
-    BrowserModule,
-    AppRoutingModule
+    PagesModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

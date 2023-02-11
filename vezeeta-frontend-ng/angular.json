@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/vezeeta-frontend-ng",
+            "outputPath": "dist/vezeeta-frontend-ng/browser",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -98,10 +98,74 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "../node_modules/bootstrap/dist/js/bootstrap.min.js"
+            ]
           }
+        },
+        "server": {
+          "builder": "@angular-devkit/build-angular:server",
+          "options": {
+            "outputPath": "dist/vezeeta-frontend-ng/server",
+            "main": "server.ts",
+            "tsConfig": "tsconfig.server.json",
+            "inlineStyleLanguage": "scss"
+          },
+          "configurations": {
+            "production": {
+              "outputHashing": "media",
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ]
+            },
+            "development": {
+              "optimization": false,
+              "sourceMap": true,
+              "extractLicenses": false
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve-ssr": {
+          "builder": "@nguniversal/builders:ssr-dev-server",
+          "configurations": {
+            "development": {
+              "browserTarget": "vezeeta-frontend-ng:build:development",
+              "serverTarget": "vezeeta-frontend-ng:server:development"
+            },
+            "production": {
+              "browserTarget": "vezeeta-frontend-ng:build:production",
+              "serverTarget": "vezeeta-frontend-ng:server:production"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "prerender": {
+          "builder": "@nguniversal/builders:prerender",
+          "options": {
+            "routes": [
+              "/"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "vezeeta-frontend-ng:build:production",
+              "serverTarget": "vezeeta-frontend-ng:server:production"
+            },
+            "development": {
+              "browserTarget": "vezeeta-frontend-ng:build:development",
+              "serverTarget": "vezeeta-frontend-ng:server:development"
+            }
+          },
+          "defaultConfiguration": "production"
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "37beca79-4088-4454-a500-4a6dd0a4c188"
   }
 }

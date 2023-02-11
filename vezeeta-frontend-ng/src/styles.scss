@@ -1,4 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
+@use './assets/scss/config/index';
 @use './assets/scss/base/base';
 @use './assets/scss/layout/layout';
 
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';
