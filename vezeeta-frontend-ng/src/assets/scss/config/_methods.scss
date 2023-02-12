@@ -1,0 +1,15 @@
+@use "variables";
+@use "directions";
+
+@mixin dir($property: text-align, $ltr-value: $end-direction, $rtl-value: $start-direction, $rtl-property: $property) {
+  #{$property}: $ltr-value;
+  [dir=rtl] & {
+    #{$rtl-property}: $rtl-value;
+  }
+}
+
+@mixin one_dir($property: text-lingn, $rtl-value: $end-direction) {
+  [dir=rtl] & {
+    #{$property}: $rtl-value;
+  }
+}

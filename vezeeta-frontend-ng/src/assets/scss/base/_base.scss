@@ -9,12 +9,12 @@ html{
     scroll-behavior: smooth;
 }
 body{
-    font-family: $body-font;
     background:  $white-color;
-    direction: $opposite-direction;
+    direction: $direction;
     text-align: $start-direction;
     justify-content: center;
     align-items: center;
+    @include dir(font-family, Pop !important, Cairo !important);
 }
 h1, h2, h3{
     font-weight: $font-regular;
@@ -33,3 +33,6 @@ p, h1, h2, h3 {
   text-overflow: ellipsis;
 }
 
+header {
+  direction: $ltr-direction;
+}

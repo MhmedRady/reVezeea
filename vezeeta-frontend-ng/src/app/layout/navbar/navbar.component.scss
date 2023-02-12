@@ -1,0 +1,17 @@
+@import "src/assets/scss/config/index";
+header{
+  background-color: $primary-color;
+  nav{
+    .navbar-brand {
+      img{
+        width: 172px;
+        margin-top: 0px;
+      }
+    }
+    .navbar-nav {
+      .nav-link {
+        color: $white-color;
+      }
+    }
+  }
+}

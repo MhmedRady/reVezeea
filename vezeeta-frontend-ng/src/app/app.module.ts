@@ -8,6 +8,7 @@ import { FooterComponent } from './layout/footer/footer.component';
 import { NavbarComponent } from './layout/navbar/navbar.component';
 import { SpinnerComponent } from './shared/components/spinner/spinner.component';
 import {PagesModule} from "./module/pages.module";
+import {SharedModule} from "./shared/shared.module";
 
 @NgModule({
   declarations: [
@@ -20,8 +21,9 @@ import {PagesModule} from "./module/pages.module";
   ],
   imports: [
     PagesModule,
-    BrowserModule.withServerTransition({ appId: 'serverApp' }),
+    BrowserModule.withServerTransition({appId: 'serverApp'}),
     AppRoutingModule,
+    SharedModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
