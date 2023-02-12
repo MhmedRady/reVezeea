@@ -1,4 +1,45 @@
-@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap');
+
+@font-face {
+  font-family: FastHand;
+  src:url("../../../assets/fonts/Fasthand-Regular.ttf")
+  format('truetype');
+}
+
+@font-face {
+  font-family: Oxy;
+  src:url("../../../assets/fonts/Oxygen-Regular.ttf")
+  format('truetype');
+}
+
+@font-face {
+  font-family: OxyB;
+  src:url("../../../assets/fonts/Oxygen-Bold.ttf")
+  format('truetype');
+}
+
+@font-face {
+  font-family: Cairo;
+  src:url("../../../assets/fonts/Cairo-Regular.ttf")
+  format('truetype');
+}
+
+@font-face {
+  font-family: CairoB;
+  src:url("../../../assets/fonts/Cairo-Bold.ttf")
+  format('truetype');
+}
+
+@font-face {
+  font-family: Pop;
+  src:url("../../../assets/fonts/Poppins-Regular.ttf")
+  format('truetype');
+}
+
+@font-face {
+  font-family: PopB;
+  src:url("../../../assets/fonts/Poppins-Medium.ttf")
+  format('truetype');
+}
 
 $font-regular: 400;
 $font-bold: 700;
