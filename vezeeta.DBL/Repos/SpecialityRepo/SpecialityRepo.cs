@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,7 +16,11 @@ namespace vezeeta.DBL.Repos.SpecialityRepo
             _vezeetaDB = _vezeetaDB;
 
         }
-        
+
+        public override IEnumerable<Speciality>? LoadData()
+        {
+            return _vezeetaDB.specialities.Include(c => c.MainSpeciality).ToList();
+        }
         public bool Find(Speciality speciality, bool checkName = true)
         {
             if(checkName is true)

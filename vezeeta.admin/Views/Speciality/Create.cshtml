@@ -19,7 +19,7 @@
             type="text/javascript"></script>
 }
 
-<form class="form row" asp-controller="Speciality" asp-action="Store"  method="post">
+    <form class="form row" asp-controller="Speciality" asp-action="Store" method="post" enctype="multipart/form-data">
    @* @Html.Partial("Form", model:Model)*@
         <partial name="Form" />
     <div class="form-group col-md-6 mb-2">

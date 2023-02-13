@@ -211,5 +211,7 @@
 
     "mobile": "Mobile",
     "logo": "Logo",
-    "department_name": "Department Name"
+    "department_name": "Department Name",
+    //speciality
+    "main_speciality": "M_Speciality"
 }

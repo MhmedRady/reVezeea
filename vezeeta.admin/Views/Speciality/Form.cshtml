@@ -1,5 +1,12 @@
 @model vezeeta.BL.DTOs.Speciality.SpecialityDTO ;
 
+<div class="form-group col-12 mb-2">
+    <div class="col-5 mx-auto">
+        <img id="img" src="@(Helper.imageUrl(Model.logo))" class="img-thumbnail view-img clickable" />
+        <input id="imgFile" type="file" class="form-control" asp-for="logo">
+   </div>
+</div>
+
 <div class="form-group col-md-6 mb-2">
     <lable class="form-lable fw-bold mb-50 d-block"> @localizer["name"] <span class="badge badge-danger">@localizer["ar-EG"]</span></lable>
     @Html.TextBoxFor(m=>m.name_ar, new {@class = "form-control"})
@@ -17,6 +24,20 @@
 </div>
 
 <div class="form-group col-md-6 mb-2">
+    <label for="location1" class="form-lable fw-bold mb-50 d-block">@localizer["main_speciality"]</label>
+    <select class="custom-select form-control"  asp-for="MainSpecialityId">
+        <option value="">@localizer["main_speciality"]</option>
+        @foreach (var main in ViewBag.mainSpecialitiesName)
+        {
+            <option value="@main.Id">@main.name</option>
+        }      
+    </select>
+    @*<span class="invalid-feedback d-block">
+        @TempData[""]
+    </span>*@
+</div>
+
+<div class="form-group col-md-6 mb-2">
     <lable class="form-lable fw-bold mb-50 d-block"> Is Active </lable>
     <fieldset>
         <div class="float-left">
@@ -25,4 +46,19 @@
     </fieldset>
 </div>
 
+<script>
+    let img = document.getElementById("img");
+    let imgFile = document.getElementById("imgFile");
+    img.onclick = function () {
+        imgFile.click();
+    }
+    imgFile.onchange = function (e) {
+        let reader = new FileReader();
+        let file = e.target.files[0];
+        reader.onload = function () {
+            img.src = reader.result;
+        }
+        reader.readAsDataURL(file);//?????????
 
+    }
+</script>

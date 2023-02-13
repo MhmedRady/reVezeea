@@ -19,8 +19,8 @@ public partial class Helper
         Random rand = new Random();
         var format_ext_image = Path.GetExtension(img.FileName);
         var r = rand.Next(1000, int.Parse(DateTime.Now.ToString("yyyyyMMmmss"))).ToString();
-        string uniqueImge = r + "." + img.FileName.Split(format_ext_image)[1];
-        
+        // string uniqueImge = r + "." + img.FileName.Split(format_ext_image)[1];
+        string uniqueImge = r + format_ext_image;
         if (!System.IO.Directory.Exists(@$".\wwwroot\images\uploaded\{dirName}"))
         {
             System.IO.Directory.CreateDirectory(@$".\wwwroot\images\uploaded\{dirName}");

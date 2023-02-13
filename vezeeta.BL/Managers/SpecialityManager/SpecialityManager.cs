@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using vezeeta.BL.DTOs.Speciality;
 using vezeeta.DBL.db.Models;
+using vezeeta.DBL.Repos.CenterRepo;
 using vezeeta.DBL.UnitOfWork;
 
 namespace vezeeta.BL.Managers.SpecialityManager
@@ -18,6 +19,7 @@ namespace vezeeta.BL.Managers.SpecialityManager
         {
             var specialityRepo = _workRepo.SpecialityRepo.GetByID(id);
             if (specialityRepo == null) return false;
+            specialityRepo.is_active = !specialityRepo.is_active;
             _workRepo.SpecialityRepo.Update(specialityRepo);
             _workRepo.SpecialityRepo.SaveChanges();
             return true;

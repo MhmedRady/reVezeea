@@ -34,7 +34,7 @@ namespace vezeeta.DBL.Migrations
 
                     b.HasIndex("SpecialitiesId");
 
-                    b.ToTable("CenterSpeciality");
+                    b.ToTable("CenterSpeciality", (string)null);
                 });
 
             modelBuilder.Entity("vezeeta.DBL.Center", b =>
@@ -108,7 +108,7 @@ namespace vezeeta.DBL.Migrations
                     b.HasIndex("name_en")
                         .IsUnique();
 
-                    b.ToTable("centers");
+                    b.ToTable("centers", (string)null);
                 });
 
             modelBuilder.Entity("vezeeta.DBL.Department", b =>
@@ -150,7 +150,7 @@ namespace vezeeta.DBL.Migrations
                     b.HasIndex("name_en")
                         .IsUnique();
 
-                    b.ToTable("departments");
+                    b.ToTable("departments", (string)null);
                 });
 
             modelBuilder.Entity("vezeeta.DBL.User", b =>
@@ -224,7 +224,7 @@ namespace vezeeta.DBL.Migrations
                         .IsUnique()
                         .HasFilter("[username] IS NOT NULL");
 
-                    b.ToTable("users");
+                    b.ToTable("users", (string)null);
                 });
 
             modelBuilder.Entity("vezeeta.DBL.db.Models.CenterSpeciality", b =>
@@ -251,7 +251,7 @@ namespace vezeeta.DBL.Migrations
 
                     b.HasIndex("SpecialityId");
 
-                    b.ToTable("centersSpecialities");
+                    b.ToTable("centersSpecialities", (string)null);
                 });
 
             modelBuilder.Entity("vezeeta.DBL.db.Models.Speciality", b =>
@@ -302,7 +302,7 @@ namespace vezeeta.DBL.Migrations
                     b.HasIndex("name_en")
                         .IsUnique();
 
-                    b.ToTable("specialities");
+                    b.ToTable("specialities", (string)null);
                 });
 
             modelBuilder.Entity("CenterSpeciality", b =>

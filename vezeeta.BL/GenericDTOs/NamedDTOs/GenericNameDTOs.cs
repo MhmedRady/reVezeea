@@ -2,6 +2,7 @@
 using System.Text.Json.Serialization;
 using vezeeta.BL.DTOs.Center;
 using vezeeta.BL.DTOs.Doctor;
+using vezeeta.BL.DTOs.Speciality;
 using vezeeta.BL.DTOs.User;
 
 
@@ -9,7 +10,8 @@ namespace vezeeta.BL
 {
     [JsonDerivedType(typeof(DepartmentDTO))]
     [JsonDerivedType(typeof(CenterReadDto))]
-    
+    [JsonDerivedType(typeof(SpecialityDTO))]
+
     public class GenericNameDTOs: IGenericNameDTOs
     {
         public Guid Id { get; set; }

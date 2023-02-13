@@ -212,5 +212,7 @@
 
     "mobile": "موبيل",
     "logo": "لوجو",
-    "department_name": "اسم القسم"
+    "department_name": "اسم القسم",
+    //speciality
+    "main_speciality": "القسم الرئيسي"
 }
