@@ -45,20 +45,3 @@
         </div>
     </fieldset>
 </div>
-
-<script>
-    let img = document.getElementById("img");
-    let imgFile = document.getElementById("imgFile");
-    img.onclick = function () {
-        imgFile.click();
-    }
-    imgFile.onchange = function (e) {
-        let reader = new FileReader();
-        let file = e.target.files[0];
-        reader.onload = function () {
-            img.src = reader.result;
-        }
-        reader.readAsDataURL(file);//?????????
-
-    }
-</script>
