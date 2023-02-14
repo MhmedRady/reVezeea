@@ -1,31 +1,8 @@
 @model vezeeta.BL.DTOs.Center.CenterDTO;
 @{
-    ViewData["Title"] = "Edit";
-    Layout = "~/Views/Shared/Layout/_CardView.cshtml";
+    ViewData["Title"] = $"Center {Model.name}";
+    ViewBag.action = "Update";
+    Layout = "Layout/_FormContent";
 }
 
-@section Styles {
-    <link rel="stylesheet" type="text/css" href="~/admin/app-assets/css-ltr/plugins/forms/switch.min.css">
-}
-
-@section Scripts {
-    <script src="~/admin/app-assets/vendors/js/forms/toggle/bootstrap-switch.min.js"
-            type="text/javascript"></script>
-    <script src="~/admin/app-assets/vendors/js/forms/toggle/bootstrap-checkbox.min.js"
-            type="text/javascript"></script>
-    <script src="~/admin/app-assets/vendors/js/forms/toggle/switchery.min.js"
-            type="text/javascript"></script>
-    <script src="~/admin/app-assets/js/scripts/forms/switch.js"
-            type="text/javascript"></script>
-}
-
-    <form class="form row" asp-controller="Center" asp-action="Update" asp-route-id="@Model.Id" method="post" enctype="multipart/form-data">
-    @Html.Partial("Form", model:Model)
-    <div class="form-group col-md-6 mb-2">
-        <fieldset>
-            <div class="float-left">
-                <button type="submit" class="btn btn-primary">@localizer["submit"]</button>
-            </div>
-        </fieldset>
-    </div>
-</form>
+@Html.Partial("Form", model:Model)
