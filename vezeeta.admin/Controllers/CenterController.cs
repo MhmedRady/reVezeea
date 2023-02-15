@@ -36,7 +36,7 @@ public class CenterController : _Controller
     [HttpGet]
     public ActionResult Create(CenterDTO? center)
     {
-        ViewBag.departmentsName = _unitOfManger.DepartmentManager.Index().Where(c => c.is_active == true);
+        ViewBag.departmentsName = _unitOfManger.DepartmentManager._Any().Where(d=>d.is_active is true).ToList();
         return View(center);
     }
     

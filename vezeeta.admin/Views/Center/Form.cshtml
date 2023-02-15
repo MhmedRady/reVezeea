@@ -51,9 +51,12 @@
     <label for="location1" class="form-lable fw-bold mb-50 d-block">@localizer["department_name"]</label>
     <select class="custom-select form-control"  asp-for="DepartmentId">
         <option value="">@localizer["department_name"]</option>
-        @foreach (var dept in ViewBag.departmentsName){
-            <option value="@dept.Id">@(dept.name)</option>
-        }      
+        @if (ViewBag.departmentsName != null)
+        {
+            foreach (var dept in ViewBag.departmentsName){
+                <option value="@dept.Id">@(dept.name)</option>
+            }      
+        }
     </select>
     <span class="invalid-feedback d-block">
         @TempData["DepartmentId"]

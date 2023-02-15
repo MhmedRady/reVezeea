@@ -86,6 +86,11 @@ namespace vezeeta.BL
             var dept = mapper.Map<Department>(department);
             return _workRepo.DepartmentRepo.Find(dept);
         }
+        
+        public IEnumerable<DepartmentDTO>? _Any()
+        {
+            return mapper.Map<ICollection<DepartmentDTO>>(_workRepo.DepartmentRepo._Any());
+        }
 
         public IEnumerable<DepartmentDTO>? LoadData()
         {

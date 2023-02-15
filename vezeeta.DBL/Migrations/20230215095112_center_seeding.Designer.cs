@@ -12,8 +12,8 @@ using vezeeta.DBL;
 namespace vezeeta.DBL.Migrations
 {
     [DbContext(typeof(VezeetaDB))]
-    [Migration("20230131221355_speciality_entity")]
-    partial class specialityentity
+    [Migration("20230215095112_center_seeding")]
+    partial class centerseeding
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,21 +24,6 @@ namespace vezeeta.DBL.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("CenterSpeciality", b =>
-                {
-                    b.Property<Guid>("CentersId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("SpecialitiesId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("CentersId", "SpecialitiesId");
-
-                    b.HasIndex("SpecialitiesId");
-
-                    b.ToTable("CenterSpeciality");
-                });
 
             modelBuilder.Entity("vezeeta.DBL.Center", b =>
                 {
@@ -57,7 +42,9 @@ namespace vezeeta.DBL.Migrations
                         .HasColumnType("real");
 
                     b.Property<DateTime?>("created_at")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
+                        .HasDefaultValueSql("GETDATE()")
                         .HasComment("Created At DateTime");
 
                     b.Property<string>("email")
@@ -111,7 +98,48 @@ namespace vezeeta.DBL.Migrations
                     b.HasIndex("name_en")
                         .IsUnique();
 
-                    b.ToTable("centers");
+                    b.ToTable("centers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("5c120ce7-6777-42ce-be61-d31c6a77bb6b"),
+                            email = "center1@asp.net",
+                            isactive = false,
+                            namear = "Center 1",
+                            nameen = "Center 1",
+                            phone = "01234567890",
+                            slugar = "center_1",
+                            slugen = "center_1",
+                            views = 0,
+                            visitors = 0
+                        },
+                        new
+                        {
+                            Id = new Guid("4d2dad2d-911a-4a95-a9c1-879626486c51"),
+                            email = "center2@asp.net",
+                            isactive = false,
+                            namear = "Center 2",
+                            nameen = "Center 2",
+                            phone = "01234567891",
+                            slugar = "center_2",
+                            slugen = "center_2",
+                            views = 0,
+                            visitors = 0
+                        },
+                        new
+                        {
+                            Id = new Guid("06fceef3-b632-466c-b354-f803cb17a107"),
+                            email = "center3@asp.net",
+                            isactive = false,
+                            namear = "Center 3",
+                            nameen = "Center 3",
+                            phone = "01234567892",
+                            slugar = "center_3",
+                            slugen = "center_3",
+                            views = 0,
+                            visitors = 0
+                        });
                 });
 
             modelBuilder.Entity("vezeeta.DBL.Department", b =>
@@ -121,7 +149,9 @@ namespace vezeeta.DBL.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("created_at")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
+                        .HasDefaultValueSql("GETDATE()")
                         .HasComment("Created At DateTime");
 
                     b.Property<bool>("is_active")
@@ -153,7 +183,7 @@ namespace vezeeta.DBL.Migrations
                     b.HasIndex("name_en")
                         .IsUnique();
 
-                    b.ToTable("departments");
+                    b.ToTable("departments", (string)null);
                 });
 
             modelBuilder.Entity("vezeeta.DBL.User", b =>
@@ -227,32 +257,28 @@ namespace vezeeta.DBL.Migrations
                         .IsUnique()
                         .HasFilter("[username] IS NOT NULL");
 
-                    b.ToTable("users");
+                    b.ToTable("users", (string)null);
                 });
 
             modelBuilder.Entity("vezeeta.DBL.db.Models.CenterSpeciality", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
+                    b.Property<Guid?>("SpecialityId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("CenterId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("SpecialityId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<DateTime?>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("GETDATE()");
 
-                    b.Property<DateTime?>("created_at")
+                    b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("updated_at")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
+                    b.HasKey("SpecialityId", "CenterId");
 
                     b.HasIndex("CenterId");
-
-                    b.HasIndex("SpecialityId");
 
                     b.ToTable("centersSpecialities");
                 });
@@ -263,11 +289,13 @@ namespace vezeeta.DBL.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("MainSpecialityId")
+                    b.Property<Guid?>("SpecialityId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("created_at")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
+                        .HasDefaultValueSql("GETDATE()")
                         .HasComment("Created At DateTime");
 
                     b.Property<bool>("is_active")
@@ -297,7 +325,7 @@ namespace vezeeta.DBL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("MainSpecialityId");
+                    b.HasIndex("SpecialityId");
 
                     b.HasIndex("name_ar")
                         .IsUnique();
@@ -305,22 +333,7 @@ namespace vezeeta.DBL.Migrations
                     b.HasIndex("name_en")
                         .IsUnique();
 
-                    b.ToTable("specialities");
-                });
-
-            modelBuilder.Entity("CenterSpeciality", b =>
-                {
-                    b.HasOne("vezeeta.DBL.Center", null)
-                        .WithMany()
-                        .HasForeignKey("CentersId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("vezeeta.DBL.db.Models.Speciality", null)
-                        .WithMany()
-                        .HasForeignKey("SpecialitiesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.ToTable("specialities", (string)null);
                 });
 
             modelBuilder.Entity("vezeeta.DBL.Center", b =>
@@ -341,12 +354,16 @@ namespace vezeeta.DBL.Migrations
             modelBuilder.Entity("vezeeta.DBL.db.Models.CenterSpeciality", b =>
                 {
                     b.HasOne("vezeeta.DBL.Center", "Center")
-                        .WithMany()
-                        .HasForeignKey("CenterId");
+                        .WithMany("CenterSpecialities")
+                        .HasForeignKey("CenterId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("vezeeta.DBL.db.Models.Speciality", "Speciality")
-                        .WithMany()
-                        .HasForeignKey("SpecialityId");
+                        .WithMany("CenterSpecialities")
+                        .HasForeignKey("SpecialityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Center");
 
@@ -357,9 +374,14 @@ namespace vezeeta.DBL.Migrations
                 {
                     b.HasOne("vezeeta.DBL.db.Models.Speciality", "MainSpeciality")
                         .WithMany()
-                        .HasForeignKey("MainSpecialityId");
+                        .HasForeignKey("SpecialityId");
 
                     b.Navigation("MainSpeciality");
+                });
+
+            modelBuilder.Entity("vezeeta.DBL.Center", b =>
+                {
+                    b.Navigation("CenterSpecialities");
                 });
 
             modelBuilder.Entity("vezeeta.DBL.Department", b =>
@@ -370,6 +392,11 @@ namespace vezeeta.DBL.Migrations
             modelBuilder.Entity("vezeeta.DBL.User", b =>
                 {
                     b.Navigation("Centers");
+                });
+
+            modelBuilder.Entity("vezeeta.DBL.db.Models.Speciality", b =>
+                {
+                    b.Navigation("CenterSpecialities");
                 });
 #pragma warning restore 612, 618
         }

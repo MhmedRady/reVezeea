@@ -26,15 +26,12 @@
 <div class="form-group col-md-6 mb-2">
     <label for="location1" class="form-lable fw-bold mb-50 d-block">@localizer["main_speciality"]</label>
     <select class="custom-select form-control"  asp-for="MainSpecialityId">
-        <option value="">@localizer["main_speciality"]</option>
+        <option value="">Select Main Speciality</option>
         @foreach (var main in ViewBag.mainSpecialitiesName)
         {
             <option value="@main.Id">@main.name</option>
         }      
     </select>
-    @*<span class="invalid-feedback d-block">
-        @TempData[""]
-    </span>*@
 </div>
 
 <div class="form-group col-md-6 mb-2">

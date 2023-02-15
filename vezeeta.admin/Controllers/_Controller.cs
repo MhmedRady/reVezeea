@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Diagnostics;
+using System.Security.Cryptography;
 using vezeeta.BL;
 using vezeeta.BL.DTOs.Center;
 using vezeeta.DBL;
@@ -44,26 +45,22 @@ namespace vezeeta.admin.Controllers
                 int pageSize = length != null ? Convert.ToInt32(length) : 0;
                 int skip = start != null ? Convert.ToInt32(start) : 0;
                 int recordsTotal = 0;
-                Debug.WriteLine(searchValue);
-                //Getting all Custom data
-                var getData = (ts);
                 //Sorting
                 if (!(string.IsNullOrEmpty(sortColumn) && string.IsNullOrEmpty(sortColumnDir)))
                 {
-                    sortColumn = sortColumnDir == "#" ? "Id" : sortColumn;
-                    getData = getData.OrderBy(d => d.name + " " + sortColumnDir);
+                    ts = sortColumnDir == "asc" ? ts.OrderBy(d => d.Id) : ts.OrderByDescending(d => d.Id);
                 }
                 //Search
                 if (!string.IsNullOrEmpty(searchValue))
                 {
-                    getData = getData.Where(d =>
+                    ts = ts.Where(d =>
                     d.name_ar.StartsWith(searchValue, StringComparison.InvariantCultureIgnoreCase) ||
                     d.name_en.StartsWith(searchValue, StringComparison.InvariantCultureIgnoreCase));
                 }
                 //total
-                recordsTotal = getData.Count();
+                recordsTotal = ts.Count();
                 //Paging
-                var data = getData.Skip(skip).Take(pageSize).ToList();
+                var data = ts.Skip(skip).Take(pageSize).ToList();
                 //Returning
                 return Json(new 
                 {   draw = draw, 

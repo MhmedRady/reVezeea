@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace vezeeta.DBL.db.Models
 {
-    public class CenterSpeciality : IGenericModel
+    public class CenterSpeciality
     {
         
         [ForeignKey("CenterId")]
@@ -20,8 +20,8 @@ namespace vezeeta.DBL.db.Models
 
         public Center? Center { get; set; }
         public Speciality? Speciality { get; set; }
-        public Guid Id { get; set; }
-        public DateTime? created_at { get; set; }
-        public DateTime? updated_at { get; set; }
+        
+        public DateTime? CreatedAt { get; set; }
+        public DateTime? UpdatedAt { get; set; }
     }
 }

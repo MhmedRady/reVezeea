@@ -11,4 +11,5 @@ public interface IGenericManager<T> where T : class
     public bool Activate(Guid id);
     public bool Find(T entity);
     public IEnumerable<T>? LoadData();
+    public IEnumerable<T>? _Any();
 }

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using vezeeta.DBL;
 
@@ -11,9 +12,11 @@ using vezeeta.DBL;
 namespace vezeeta.DBL.Migrations
 {
     [DbContext(typeof(VezeetaDB))]
-    partial class VezeetaDBModelSnapshot : ModelSnapshot
+    [Migration("20230215055910_speciality_entity")]
+    partial class specialityentity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -39,9 +42,7 @@ namespace vezeeta.DBL.Migrations
                         .HasColumnType("real");
 
                     b.Property<DateTime?>("created_at")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValueSql("GETDATE()")
                         .HasComment("Created At DateTime");
 
                     b.Property<string>("email")
@@ -96,47 +97,6 @@ namespace vezeeta.DBL.Migrations
                         .IsUnique();
 
                     b.ToTable("centers", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("5c120ce7-6777-42ce-be61-d31c6a77bb6b"),
-                            email = "center1@asp.net",
-                            isactive = false,
-                            namear = "Center 1",
-                            nameen = "Center 1",
-                            phone = "01234567890",
-                            slugar = "center_1",
-                            slugen = "center_1",
-                            views = 0,
-                            visitors = 0
-                        },
-                        new
-                        {
-                            Id = new Guid("4d2dad2d-911a-4a95-a9c1-879626486c51"),
-                            email = "center2@asp.net",
-                            isactive = false,
-                            namear = "Center 2",
-                            nameen = "Center 2",
-                            phone = "01234567891",
-                            slugar = "center_2",
-                            slugen = "center_2",
-                            views = 0,
-                            visitors = 0
-                        },
-                        new
-                        {
-                            Id = new Guid("06fceef3-b632-466c-b354-f803cb17a107"),
-                            email = "center3@asp.net",
-                            isactive = false,
-                            namear = "Center 3",
-                            nameen = "Center 3",
-                            phone = "01234567892",
-                            slugar = "center_3",
-                            slugen = "center_3",
-                            views = 0,
-                            visitors = 0
-                        });
                 });
 
             modelBuilder.Entity("vezeeta.DBL.Department", b =>
@@ -146,9 +106,7 @@ namespace vezeeta.DBL.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("created_at")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValueSql("GETDATE()")
                         .HasComment("Created At DateTime");
 
                     b.Property<bool>("is_active")
@@ -290,9 +248,7 @@ namespace vezeeta.DBL.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("created_at")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValueSql("GETDATE()")
                         .HasComment("Created At DateTime");
 
                     b.Property<bool>("is_active")

@@ -19,7 +19,7 @@
         </li>
         <li class="nav-item">
             <a href="#">
-                <i class="la la-columns"></i>
+                <i class="la la-header"></i>
                 <span class="menu-title" data-i18n="nav.page_layouts.main">Departments</span>
             </a>
           <ul class="menu-content">
@@ -31,16 +31,26 @@
             </li>
           </ul>
         </li>
-        <li class=" nav-item"><a href="#"><i class="la la-navicon"></i><span class="menu-title" data-i18n="nav.navbars.main">Centers</span></a>
-          <ul class="menu-content">
-            <li>
-              <a class="menu-item" asp-action="Index" asp-controller="Center" data-i18n="nav.navbars.nav_light">All Centers</a>
-            </li>
-            <li>
-              <a class="menu-item" asp-action="Create" asp-controller="Center" data-i18n="nav.navbars.nav_dark">Add New</a>
-            </li>
-          </ul>
-        </li>
+      <li class=" nav-item"><a href="#"><i class="la la-puzzle-piece"></i><span class="menu-title" data-i18n="nav.navbars.main">Centers</span></a>
+        <ul class="menu-content">
+          <li>
+            <a class="menu-item" asp-action="Index" asp-controller="Center" data-i18n="nav.navbars.nav_light">All Centers</a>
+          </li>
+          <li>
+            <a class="menu-item" asp-action="Create" asp-controller="Center" data-i18n="nav.navbars.nav_dark">Add New</a>
+          </li>
+        </ul>
+      </li>
+      <li class=" nav-item"><a href="#"><i class="la la-android"></i><span class="menu-title" data-i18n="nav.navbars.main">Speciality</span></a>
+        <ul class="menu-content">
+          <li>
+            <a class="menu-item" asp-action="Index" asp-controller="Speciality" data-i18n="nav.navbars.nav_light">All Specialities</a>
+          </li>
+          <li>
+            <a class="menu-item" asp-action="Create" asp-controller="Speciality" data-i18n="nav.navbars.nav_dark">Add New</a>
+          </li>
+        </ul>
+      </li>
         <li class=" nav-item"><a href="#"><i class="la la-arrows-v"></i><span class="menu-title" data-i18n="nav.vertical_nav.main">Vertical Nav</span></a>
           <ul class="menu-content">
             <li><a class="menu-item" href="#" data-i18n="nav.vertical_nav.vertical_navigation_types.main">Navigation Types</a>

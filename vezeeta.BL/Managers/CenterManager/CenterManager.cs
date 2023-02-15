@@ -75,8 +75,6 @@ public class CenterManager : ICenterManager
         _workRepo.CenterRepo.Update(centerRepo);
         _workRepo.CenterRepo.SaveChanges();
         return true;
-
-
     }
     public bool Find(CenterDTO entity)//search any thing except id
     {
@@ -88,6 +86,12 @@ public class CenterManager : ICenterManager
     {
         return mapper.Map<ICollection<CenterReadDto>>((_workRepo.CenterRepo.LoadData()));
     }
+
+    public IEnumerable<CenterDTO>? _Any()
+    {
+        return mapper.Map<ICollection<CenterDTO>>(_workRepo.CenterRepo._Any());
+    }
+
     IEnumerable<CenterDTO>? IGenericManager<CenterDTO>.LoadData()
     {
         throw new NotImplementedException();

@@ -33,10 +33,12 @@ namespace vezeeta.DBL
         public Department? Department { get; set; }
         public User? User { get; set; }
         public virtual ICollection<Speciality> Specialities { get; set; }
+        public virtual ICollection<CenterSpeciality> CenterSpecialities { get; set; }
 
         public Center()
         {
             Specialities = new HashSet<Speciality>();
+            CenterSpecialities = new HashSet<CenterSpeciality>();
         }
     }
 }

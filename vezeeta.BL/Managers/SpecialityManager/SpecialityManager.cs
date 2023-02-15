@@ -73,6 +73,11 @@ namespace vezeeta.BL.Managers.SpecialityManager
             return mapper.Map<ICollection<SpecialityDTO>>((_workRepo.SpecialityRepo.LoadData()));
         }
 
+        public IEnumerable<SpecialityDTO>? _Any()
+        {
+            return mapper.Map<ICollection<SpecialityDTO>>(_workRepo.SpecialityRepo._Any());
+        }
+
         public bool Update(SpecialityDTO entity)
         {
             entity.updated_at = DateTime.Now;

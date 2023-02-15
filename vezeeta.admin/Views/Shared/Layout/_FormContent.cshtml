@@ -33,13 +33,11 @@
         {
             let img = document.getElementById("img");
             let imgFile = document.getElementById("imgFile");
-            if (img) img.onclick = _=>{imgFile.click();}
+            if (img) img.onclick = _=>{imgFile.click();};
             if (imgFile) imgFile.onchange = (e)=>{
                 let reader = new FileReader();
                 let file = e.target.files[0];
-                reader.onload = function () {
-                    img.src = reader.result;
-                }
+                reader.onload = _=>{img.src = reader.result;};
                 reader.readAsDataURL(file);
             }    
         }       
